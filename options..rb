@@ -37,7 +37,7 @@ module Options
     when 1
       puts "Option 1 selected\n"
     when 2
-    puts "Option 2 selected\n"
+      puts "Option 2 selected\n"
     # Add more options here
     when 0
       quit
@@ -54,5 +54,4 @@ module Options
     puts 'saving your data ...'
     exit
   end
-
 end
