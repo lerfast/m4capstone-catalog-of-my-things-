@@ -1,7 +1,7 @@
 module Options
-def display_options
-  loop do
-    puts 'Please choose an option by entering a number:
+  def display_options
+    loop do
+      puts 'Please choose an option by entering a number:
         1 - List all books.
         2 - List all music albums.
         3 - List all movies.
@@ -16,43 +16,43 @@ def display_options
         12 - Add a game.
         0  - Quit'
   
-    option = gets.chomp
+      option = gets.chomp
   
-    if number?(option)
-      process_input(option.to_i)
+      if number?(option)
+        process_input(option.to_i)
+      else
+        show_error
+      end
+    end
+  end
+  
+  def number?(obj)
+    obj = obj.to_s unless obj.is_a? String
+    /\A[+-]?\d+(\.\d+)?\z/.match(obj)
+  end
+  
+  def process_input(option)
+    case option
+  
+    when 1
+      puts "Option 1 selected\n"
+    when 2
+    puts "Option 2 selected\n"
+    # Add more options here
+    when 0
+      quit
     else
       show_error
     end
   end
-end
   
-def number?(obj)
-  obj = obj.to_s unless obj.is_a? String
-  /\A[+-]?\d+(\.\d+)?\z/.match(obj)
-end
-  
-def process_input(option)
-  case option
-  
-  when 1
-    puts "OPtion 1 has been selected\n"
-  when 2
-    puts "OPtion 2 has been selected\n"
-  # Add more options here
-  when 0
-    quit
-  else
-    show_error
+  def show_error
+    puts 'Error! Please select a valid option.'
   end
-end
   
-def show_error
-  puts 'Error! Please select a valid option.'
-end
-  
-def quit
-  puts 'saving your data ...'
-  exit
-end
+  def quit
+    puts 'saving your data ...'
+    exit
+  end
 
 end
