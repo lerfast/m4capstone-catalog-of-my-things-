@@ -1,7 +1,7 @@
 require './classes/item'
 
 describe Item do
-  subject { Item.new('A Sample Item', '2010-05-05') }
+  subject { Item.new('2010-05-05') }
 
   describe '#can_be_archived?' do
     context 'when published more than 10 years ago' do
@@ -11,7 +11,7 @@ describe Item do
     end
 
     context 'when published less than 10 years ago' do
-      let(:recent_item) { Item.new('Another Sample Item', '2020-05-05') }
+      let(:recent_item) { Item.new('2020-05-05') }
 
       it 'returns false' do
         expect(recent_item.can_be_archived?).to eq(false)

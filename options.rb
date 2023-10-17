@@ -55,7 +55,7 @@ module Options
       puts 'No games available.'
     else
       @games.each_with_index do |game, index|
-        puts "#{index + 1}.Name: #{game.name} Date: #{game.publish_date} " \
+        puts "#{index + 1}.Date: #{game.publish_date} " \
              "Multiplayer: #{game.multiplayer} Last played at: #{game.last_played_at}"
       end
     end
@@ -72,8 +72,6 @@ module Options
   end
 
   def add_game
-    puts 'Enter the name of the game:'
-    name = gets.chomp
 
     publish_date = ''
     loop do
@@ -96,7 +94,7 @@ module Options
       puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
     end
 
-    game = Game.new(name, publish_date, multiplayer, last_played_at)
+    game = Game.new(publish_date, multiplayer, last_played_at)
     @games << game
     save_game_to_json(game)
     puts 'Game added successfully!'
@@ -112,7 +110,6 @@ module Options
 
   def save_game_to_json(game)
     data = {
-      name: game.name,
       publish_date: game.publish_date.to_s,
       multiplayer: game.multiplayer,
       last_played_at: game.last_played_at.to_s,
@@ -131,7 +128,7 @@ module Options
 
     File.open('games.json', 'r').each do |line|
       data = JSON.parse(line)
-      game = Game.new(data['name'], data['publish_date'], data['multiplayer'], data['last_played_at'],
+      game = Game.new(data['publish_date'], data['multiplayer'], data['last_played_at'],
                       archived: data['archived'])
       games << game
     end
