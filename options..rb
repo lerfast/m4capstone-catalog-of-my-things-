@@ -54,5 +54,4 @@ module Options
     puts 'saving your data ...'
     exit
   end
-
 end
