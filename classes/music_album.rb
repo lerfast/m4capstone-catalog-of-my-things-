@@ -1,5 +1,5 @@
 require 'securerandom'
-require_relative './item'
+require_relative 'item'
 
 class MusicAlbum < Item
   attr_accessor :author, :source, :label, :on_spotify
