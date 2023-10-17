@@ -72,7 +72,6 @@ module Options
   end
 
   def add_game
-
     publish_date = ''
     loop do
       puts 'Enter the publish date of the game (YYYY-MM-DD):'
