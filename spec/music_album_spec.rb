@@ -29,4 +29,17 @@ RSpec.describe MusicAlbum do
     end
   end
 
+  describe '#genre=' do
+    it 'sets the genre attribute' do
+      genre = Genre.new('Rock')
+      album.genre = genre
+      expect(album.genre).to eq(genre)
+    end
+
+    it 'adds the album to the genre' do
+      genre = Genre.new('Rock')
+      album.genre = genre
+      expect(genre.items).to include(album)
+    end
+  end
 end

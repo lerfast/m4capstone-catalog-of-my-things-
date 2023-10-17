@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class Genre
-  attr_reader :name
+  attr_reader :name, :items
 
   def initialize(name)
     @id = SecureRandom.uuid
@@ -11,5 +11,6 @@ class Genre
 
   def add_item(item)
     @items << item
+    item.genre = self unless item.genre == self
   end
 end

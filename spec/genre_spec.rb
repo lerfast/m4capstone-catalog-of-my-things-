@@ -14,11 +14,5 @@ RSpec.describe Genre do
     it 'returns the name of the genre' do
       expect(genre.name).to eq('Rock')
     end
-  end
-
-  describe '#add_item' do
-    it 'adds an item to the genre' do
-      expect(genre.add_item('item')).to eq(['item'])
-    end
-  end
+  end    
 end

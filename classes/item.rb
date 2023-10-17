@@ -13,6 +13,7 @@ class Item
     @id = SecureRandom.uuid
     @publish_date = Date.parse(publish_date)
     @archived = archived
+    @genre = nil
   end
 
   def can_be_archived?
@@ -21,7 +22,12 @@ class Item
 
   def move_to_archive
     return unless can_be_archived?
-
     @archived = true
+  end
+
+  def genre=(genre)
+    puts 'Setting genre...'
+    @genre = genre
+    genre.add_item(self) unless genre.items.include?(self)
   end
 end
