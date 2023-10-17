@@ -26,7 +26,6 @@ class Item
   end
 
   def genre=(genre)
-    puts 'Setting genre...'
     @genre = genre
     genre.add_item(self) unless genre.items.include?(self)
   end
