@@ -15,9 +15,9 @@ module Options
         11 - Add a movie
         12 - Add a game.
         0  - Quit'
- 
+
       option = gets.chomp
- 
+
       if number?(option)
         process_input(option.to_i)
       else
@@ -25,15 +25,15 @@ module Options
       end
     end
   end
- 
+
   def number?(obj)
     obj = obj.to_s unless obj.is_a? String
     /\A[+-]?\d+(\.\d+)?\z/.match(obj)
   end
- 
+
   def process_input(option)
     case option
- 
+
     when 1
       puts "Option 1 selected\n"
     when 2
@@ -45,11 +45,11 @@ module Options
       show_error
     end
   end
- 
+
   def show_error
     puts 'Error! Please select a valid option.'
   end
- 
+
   def quit
     puts 'saving your data ...'
     exit
