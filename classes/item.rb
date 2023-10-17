@@ -23,6 +23,11 @@ class Item
     genre.add_item(self) unless genre.items.include?(self)
   end
 
+  def author=(author)
+    @author = author
+    author.add_item(self) unless author.items.include?(self)
+  end
+
   def valid_date_format?(date)
     date.match?(/^\d{4}-\d{2}-\d{2}$/)
   end

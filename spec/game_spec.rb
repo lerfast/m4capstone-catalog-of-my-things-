@@ -1,1 +1,1 @@
-
+require './classes/genre'
