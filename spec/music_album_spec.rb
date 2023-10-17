@@ -1,7 +1,7 @@
 require 'rspec'
 require './classes/music_album'
 
-RSpec.describe MusicAlbum do
+describe MusicAlbum do
   let(:album) { MusicAlbum.new('2019-01-01') }
 
   describe '#initialize' do

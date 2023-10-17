@@ -3,13 +3,9 @@ require_relative '../classes/genre'
 
 class Item
   attr_accessor :genre
-
-  def initialize
-    @genre = nil
-  end
 end
 
-RSpec.describe Genre do
+describe Genre do
   let(:item) { Item.new('2019-01-01') }
 
   describe '#initialize' do
