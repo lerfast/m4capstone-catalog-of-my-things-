@@ -1,4 +1,4 @@
-require_relative './classes/game'
+require_relative 'classes/game'
 require 'json'
 
 module Options
@@ -52,17 +52,18 @@ module Options
 
   def list_games
     if @games.empty?
-      puts "No games available."
+      puts 'No games available.'
     else
       @games.each_with_index do |game, index|
-        puts "#{index + 1}.Name: #{game.name} Date: #{game.publish_date} Multiplayer: #{game.multiplayer} Last played at: #{game.last_played_at}"
+        puts "#{index + 1}.Name: #{game.name} Date: #{game.publish_date} " \
+             "Multiplayer: #{game.multiplayer} Last played at: #{game.last_played_at}"
       end
     end
   end
 
   def list_authors
     if @authors.empty?
-      puts "No authors available."
+      puts 'No authors available.'
     else
       @authors.each_with_index do |author, index|
         puts "#{index + 1}. #{author.first_name} #{author.last_name}"
@@ -71,43 +72,44 @@ module Options
   end
 
   def add_game
-    puts "Enter the name of the game:"
+    puts 'Enter the name of the game:'
     name = gets.chomp
-  
+
     publish_date = ''
     loop do
-      puts "Enter the publish date of the game (YYYY-MM-DD):"
+      puts 'Enter the publish date of the game (YYYY-MM-DD):'
       publish_date = gets.chomp
       break if valid_date?(publish_date)
-      puts "Invalid date! Please enter a valid date in the format YYYY-MM-DD."
+
+      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
     end
-  
-    puts "Is the game multiplayer? (yes/no)"
-    multiplayer = gets.chomp.downcase == 'yes' ? true : false
-  
+
+    puts 'Is the game multiplayer? (yes/no)'
+    multiplayer = gets.chomp.downcase == 'yes'
+
     last_played_at = ''
     loop do
-      puts "Enter the last played date of the game (YYYY-MM-DD):"
+      puts 'Enter the last played date of the game (YYYY-MM-DD):'
       last_played_at = gets.chomp
       break if valid_date?(last_played_at)
-      puts "Invalid date! Please enter a valid date in the format YYYY-MM-DD."
+
+      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
     end
-  
+
     game = Game.new(name, publish_date, multiplayer, last_played_at)
-@games << game
-save_game_to_json(game)
-puts "Game added successfully!"
+    @games << game
+    save_game_to_json(game)
+    puts 'Game added successfully!'
   end
-  
+
   # Añade este método de validación al módulo Options
   def valid_date?(date_str)
-    begin
-      Date.parse(date_str)
-      true
-    rescue ArgumentError
-      false
-    end
+    Date.parse(date_str)
+    true
+  rescue ArgumentError
+    false
   end
+
   def save_game_to_json(game)
     data = {
       name: game.name,
@@ -116,7 +118,7 @@ puts "Game added successfully!"
       last_played_at: game.last_played_at.to_s,
       archived: game.archived
     }
-    
+
     File.open('games.json', 'a') do |file|
       file.puts(data.to_json)
     end
@@ -124,15 +126,16 @@ puts "Game added successfully!"
 
   def load_games_from_json
     games = []
-    
+
     return games unless File.exist?('games.json')
 
     File.open('games.json', 'r').each do |line|
       data = JSON.parse(line)
-      game = Game.new(data['name'], data['publish_date'], data['multiplayer'], data['last_played_at'], archived: data['archived'])
+      game = Game.new(data['name'], data['publish_date'], data['multiplayer'], data['last_played_at'],
+                      archived: data['archived'])
       games << game
     end
-    
+
     games
   end
 
