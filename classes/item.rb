@@ -7,14 +7,22 @@ class Item
 
   def initialize(name, publish_date, author = nil, archived: false)
     @name = name
-    unless publish_date.match?(/^\d{4}-\d{2}-\d{2}$/)
+    
+    unless valid_date_format?(publish_date)
       raise ArgumentError, 'Invalid publish_date format. Please use YYYY-MM-DD.'
     end
-
+  
     @id = SecureRandom.uuid
     @publish_date = Date.parse(publish_date)
     @author = author  
     @archived = archived
+  rescue ArgumentError => e
+    puts e.message
+  end
+  
+  # Este método verifica si el formato de la fecha es válido
+  def valid_date_format?(date)
+    date.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
 
   def can_be_archived?

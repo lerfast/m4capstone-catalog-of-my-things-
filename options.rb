@@ -1,4 +1,5 @@
 require_relative './classes/game'
+require 'json'
 
 module Options
   def display_options
@@ -72,21 +73,67 @@ module Options
   def add_game
     puts "Enter the name of the game:"
     name = gets.chomp
-
-    puts "Enter the publish date of the game (YYYY-MM-DD):"
-    publish_date = gets.chomp
-
+  
+    publish_date = ''
+    loop do
+      puts "Enter the publish date of the game (YYYY-MM-DD):"
+      publish_date = gets.chomp
+      break if valid_date?(publish_date)
+      puts "Invalid date! Please enter a valid date in the format YYYY-MM-DD."
+    end
+  
     puts "Is the game multiplayer? (yes/no)"
     multiplayer = gets.chomp.downcase == 'yes' ? true : false
-
-    puts "Enter the last played date of the game (YYYY-MM-DD):"
-    last_played_at = gets.chomp
-
-    # Crear una nueva instancia de Game y agregarla a la lista @games.
+  
+    last_played_at = ''
+    loop do
+      puts "Enter the last played date of the game (YYYY-MM-DD):"
+      last_played_at = gets.chomp
+      break if valid_date?(last_played_at)
+      puts "Invalid date! Please enter a valid date in the format YYYY-MM-DD."
+    end
+  
     game = Game.new(name, publish_date, multiplayer, last_played_at)
-    @games << game
+@games << game
+save_game_to_json(game)
+puts "Game added successfully!"
+  end
+  
+  # Añade este método de validación al módulo Options
+  def valid_date?(date_str)
+    begin
+      Date.parse(date_str)
+      true
+    rescue ArgumentError
+      false
+    end
+  end
+  def save_game_to_json(game)
+    data = {
+      name: game.name,
+      publish_date: game.publish_date.to_s,
+      multiplayer: game.multiplayer,
+      last_played_at: game.last_played_at.to_s,
+      archived: game.archived
+    }
+    
+    File.open('games.json', 'a') do |file|
+      file.puts(data.to_json)
+    end
+  end
 
-    puts "Game added successfully!"
+  def load_games_from_json
+    games = []
+    
+    return games unless File.exist?('games.json')
+
+    File.open('games.json', 'r').each do |line|
+      data = JSON.parse(line)
+      game = Game.new(data['name'], data['publish_date'], data['multiplayer'], data['last_played_at'], archived: data['archived'])
+      games << game
+    end
+    
+    games
   end
 
   def show_error
