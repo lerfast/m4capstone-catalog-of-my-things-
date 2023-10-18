@@ -46,6 +46,8 @@ include List
       list_albums
     when 4
       list_games
+    when 5
+      list_genres
     when 7
       list_authors
     when 10
@@ -78,6 +80,10 @@ include List
     end
   end
 
+  def list_genres
+    List.list_genres(@genres)
+  end
+
   def list_authors
     if @authors.empty?
       puts 'No authors available.'
@@ -100,7 +106,9 @@ include List
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
+    puts '----------------------------------------------'
     puts 'Album added successfully!'
+    puts '----------------------------------------------'
   end
 
   def add_game

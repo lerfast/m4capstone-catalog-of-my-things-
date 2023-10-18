@@ -6,4 +6,18 @@ module List
             "Genre: #{item.genre.name} Publish date: #{item.publish_date}"
     end
   end
+
+  def self.list_genres(collection)
+    if collection.empty?
+      puts '----------------------------------------------'
+      puts 'This list is empty'
+      puts '----------------------------------------------'
+    else
+      puts '----------------------------------------------'
+      collection.each_with_index do |genre, index|
+        puts "#{index + 1}. #{genre.name}"
+      end
+      puts '----------------------------------------------'
+    end
+  end
 end
