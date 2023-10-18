@@ -2,7 +2,7 @@ require 'date'
 require_relative '../classes/book'
 
 describe Book do
-  let(:publish_date) { Date.new(2023, 8, 1) }
+  let(:publish_date) { Date.new(2023, 8, 1).strftime('%Y-%m-%d') } # Date to string
   let(:book_data) do
     {
       id: 123,
@@ -21,6 +21,6 @@ describe Book do
   it 'can be converted to hash' do
     book = Book.new(**book_data)
     book_hash = book.to_h
-    expect(book_hash).to eq(book_data.merge(publish_date: publish_date.strftime('%Y-%m-%d')))
+    expect(book_hash).to eq(book_data.merge(publish_date: publish_date))
   end
 end
