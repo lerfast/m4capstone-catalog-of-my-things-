@@ -102,51 +102,41 @@ module Options
     puts 'Album added successfully!'
     puts '----------------------------------------------'
   end
+# Dentro del módulo Options
 
-  def add_game
-    publish_date = ''
-    loop do
-      puts 'Enter the publish date of the game (YYYY-MM-DD):'
-      publish_date = gets.chomp
-      break if valid_date?(publish_date)
+def add_game
+  game_publish_date = verify_publish_date
 
-      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
-    end
+  puts 'Thats the game has multiplayer? (y/n)'
+  game_multiplayer = gets.chomp
 
-    puts 'Is the game multiplayer? (yes/no)'
-    multiplayer = gets.chomp.downcase == 'yes'
+  game_last_played_date = verify_publish_date("Enter the last played date of the game (YYYY-MM-DD):")
 
-    last_played_at = ''
-    loop do
-      puts 'Enter the last played date of the game (YYYY-MM-DD):'
-      last_played_at = gets.chomp
-      break if valid_date?(last_played_at)
+  game = Game.new(game_publish_date, game_multiplayer, game_last_played_date)
+  Decorator.decorate(game, @authors, @genres, @labels)
+  @games << game
+  save_game_to_json(game)
 
-      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
-    end
-
-    game = Game.new(publish_date, multiplayer, last_played_at)
-    @games << game
-    save_game_to_json(game)
-    puts 'Game added successfully!'
-  end
-
+  puts '----------------------------------------------'
+  puts 'Game added successfully!!!'
+  puts '----------------------------------------------'
+end
   # Añade este método de validación al módulo Options
   def valid_date?(date_str)
     date_str.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
 
-  def verify_publish_date
-    publish_date = ''
-    loop do
-      puts 'Enter the publish date of the album (YYYY-MM-DD):'
-      publish_date = gets.chomp
-      break if valid_date?(publish_date)
+  def verify_publish_date(prompt = "Enter the publish date of the item (YYYY-MM-DD):")
+  publish_date = ''
+  loop do
+    puts prompt
+    publish_date = gets.chomp
+    break if valid_date?(publish_date)
 
-      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
-    end
-    publish_date
+    puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
   end
+  publish_date
+end
 
   def save_game_to_json(game)
     data = {
