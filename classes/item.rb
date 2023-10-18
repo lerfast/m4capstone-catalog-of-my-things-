@@ -6,7 +6,10 @@ class Item
   attr_reader :publish_date, :id, :archived, :label, :genre, :author
 
   def initialize(publish_date, author = nil, archived: false)
-    raise ArgumentError, 'Invalid publish_date format. Please use YYYY-MM-DD.' unless valid_date_format?(publish_date)
+    unless valid_date_format?(publish_date)
+      raise ArgumentError,
+            'Invalid publish_date format. Please use YYYY-MM-DD.'
+    end
 
     @id = SecureRandom.uuid
     @publish_date = Date.parse(publish_date)

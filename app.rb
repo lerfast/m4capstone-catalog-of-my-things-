@@ -6,6 +6,10 @@ class App
   attr_accessor :games, :authors
 
   def initialize
+    @albums = []
+    @books = []
+    @genres = []
+    @labels = []
     @games = load_games_from_json
     @authors = []
   end

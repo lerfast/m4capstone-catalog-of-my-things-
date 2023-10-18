@@ -1,7 +1,12 @@
 require_relative 'classes/game'
+require_relative 'classes/music_album'
+require_relative 'modules/decorator'
+require_relative 'modules/list'
 require 'json'
 
 module Options
+  include Decorator
+  include List
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
@@ -34,19 +39,32 @@ module Options
     /\A[+-]?\d+(\.\d+)?\z/.match(obj)
   end
 
+  OPTION_ACTIONS = {
+    1 => :list_books,
+    2 => :list_albums,
+    3 => :list_movies,
+    4 => :list_games,
+    5 => :list_genres,
+    7 => :list_authors,
+    10 => :add_album,
+    12 => :add_game,
+    0 => :quit
+  }.freeze
+
   def process_input(option)
-    case option
-    # ... (otros casos)
-    when 4
-      list_games
-    when 7
-      list_authors
-    when 12
-      add_game
-    when 0
-      quit
+    action = OPTION_ACTIONS[option]
+    if action
+      send(action)
     else
       show_error
+    end
+  end
+
+  def list_albums
+    if @albums.empty?
+      puts 'No albums available.'
+    else
+      List.list_items(@albums)
     end
   end
 
@@ -61,6 +79,10 @@ module Options
     end
   end
 
+  def list_genres
+    List.list_genres(@genres)
+  end
+
   def list_authors
     if @authors.empty?
       puts 'No authors available.'
@@ -69,6 +91,16 @@ module Options
         puts "#{index + 1}. #{author.first_name} #{author.last_name}"
       end
     end
+  end
+
+  def add_album
+    album_publish_date = verify_publish_date
+    album = MusicAlbum.new(album_publish_date)
+    Decorator.decorate(album, @authors, @genres, @labels)
+    @albums << album
+    puts '----------------------------------------------'
+    puts 'Album added successfully!'
+    puts '----------------------------------------------'
   end
 
   def add_game
@@ -101,10 +133,19 @@ module Options
 
   # Añade este método de validación al módulo Options
   def valid_date?(date_str)
-    Date.parse(date_str)
-    true
-  rescue ArgumentError
-    false
+    date_str.match?(/^\d{4}-\d{2}-\d{2}$/)
+  end
+
+  def verify_publish_date
+    publish_date = ''
+    loop do
+      puts 'Enter the publish date of the album (YYYY-MM-DD):'
+      publish_date = gets.chomp
+      break if valid_date?(publish_date)
+
+      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
+    end
+    publish_date
   end
 
   def save_game_to_json(game)
