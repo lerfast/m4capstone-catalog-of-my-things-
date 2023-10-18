@@ -39,23 +39,22 @@ module Options
     /\A[+-]?\d+(\.\d+)?\z/.match(obj)
   end
 
+  OPTION_ACTIONS = {
+    1 => :list_books,
+    2 => :list_albums,
+    3 => :list_movies,
+    4 => :list_games,
+    5 => :list_genres,
+    7 => :list_authors,
+    10 => :add_album,
+    12 => :add_game,
+    0 => :quit
+  }.freeze
+
   def process_input(option)
-    case option
-    # ... (otros casos)
-    when 2
-      list_albums
-    when 4
-      list_games
-    when 5
-      list_genres
-    when 7
-      list_authors
-    when 10
-      add_album
-    when 12
-      add_game
-    when 0
-      quit
+    action = OPTION_ACTIONS[option]
+    if action
+      send(action)
     else
       show_error
     end
