@@ -11,17 +11,6 @@ class Book < Item
     @title = title
   end
 
-  # If I need to print the book.
-  def to_h
-    {
-      id: @id,
-      publisher: @publisher,
-      cover_state: @cover_state,
-      title: @title,
-      publish_date: @publish_date.strftime('%Y-%m-%d')
-    }
-  end
-
   private
 
   def can_be_archived?
