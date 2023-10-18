@@ -1,18 +1,16 @@
 require_relative '../classes/label'
 
 describe Label do
-  let(:label_data) do
-    {
-      id: 456,
-      title: 'Label Title',
-      color: 'Label Color',
-      items: [] # Include an empty array for the items
-    }
+  let(:label) { Label.new(title: 'Science', color: 'color') }
+
+  it 'can be created' do
+    expect(label).to be_instance_of(Label)
   end
 
-  it 'can be converted to hash' do
-    label = Label.new(**label_data)
-    label_hash = label.to_h
-    expect(label_hash).to eq(label_data)
+  it 'can add an item' do
+    book = Book.new(publisher: 'Gordona', cover_state: 'bad', publish_date: '2023-08-01')
+    label.add_item(book)
+    expect(label.items).to include(book)
   end
+
 end
