@@ -4,7 +4,6 @@ require_relative '../classes/label'
 
 module Decorator
   def self.decorate(item, authors, genres, labels)
-
     puts 'first name of the author is:'
     author_first_name = gets.chomp
     puts 'last name of the author is:'

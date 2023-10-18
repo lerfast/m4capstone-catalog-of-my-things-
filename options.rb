@@ -5,8 +5,8 @@ require_relative 'modules/list'
 require 'json'
 
 module Options
-include Decorator
-include List
+  include Decorator
+  include List
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
