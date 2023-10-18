@@ -1,10 +1,12 @@
 require_relative 'classes/game'
 require_relative 'classes/music_album'
 require_relative 'modules/decorator'
+require_relative 'modules/list'
 require 'json'
 
 module Options
 include Decorator
+include List
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
@@ -40,6 +42,8 @@ include Decorator
   def process_input(option)
     case option
     # ... (otros casos)
+    when 2
+      list_albums
     when 4
       list_games
     when 7
@@ -52,6 +56,14 @@ include Decorator
       quit
     else
       show_error
+    end
+  end
+
+  def list_albums
+    if @albums.empty?
+      puts 'No albums available.'
+    else
+      List.list_items(@albums)
     end
   end
 
@@ -77,11 +89,18 @@ include Decorator
   end
 
   def add_album
-    album = MusicAlbum.new('2020-02-02')
+    album_publish_date = ''
+    loop do
+      puts 'Enter the publish date of the album (YYYY-MM-DD):'
+      album_publish_date = gets.chomp
+      break if valid_date?(album_publish_date)
+
+      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
+    end
+    album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album)
     @albums << album
     puts 'Album added successfully!'
-    puts @albums
   end
 
   def add_game
