@@ -14,12 +14,4 @@ class Label
     item.label = self
   end
 
-  def to_h
-    {
-      id: @id,
-      title: @title,
-      color: @color,
-      items: @items.map(&:to_h)
-    }
-  end
 end
