@@ -7,6 +7,7 @@ class Item
 
   def initialize(publish_date, author = nil, archived: false)
     raise ArgumentError, 'Invalid publish_date format. Please use YYYY-MM-DD.' unless valid_date_format?(publish_date)
+
     @id = SecureRandom.uuid
     @publish_date = Date.parse(publish_date)
     @author = author
@@ -41,6 +42,7 @@ class Item
 
   def move_to_archive
     return unless can_be_archived?
+
     @archived = true
   end
 end
