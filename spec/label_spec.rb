@@ -12,5 +12,4 @@ describe Label do
     label.add_item(book)
     expect(label.items).to include(book)
   end
-
 end
