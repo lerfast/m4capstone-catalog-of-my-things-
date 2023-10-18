@@ -1,7 +1,10 @@
 require_relative 'classes/game'
+require_relative 'classes/music_album'
+require_relative 'modules/decorator'
 require 'json'
 
 module Options
+include Decorator
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
@@ -41,6 +44,8 @@ module Options
       list_games
     when 7
       list_authors
+    when 10
+      add_album
     when 12
       add_game
     when 0
@@ -69,6 +74,14 @@ module Options
         puts "#{index + 1}. #{author.first_name} #{author.last_name}"
       end
     end
+  end
+
+  def add_album
+    album = MusicAlbum.new('2020-02-02')
+    Decorator.decorate(album)
+    @albums << album
+    puts 'Album added successfully!'
+    puts @albums
   end
 
   def add_game
