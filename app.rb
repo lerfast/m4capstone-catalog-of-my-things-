@@ -7,6 +7,9 @@ class App
 
   def initialize
     @albums = []
+    @books = []
+    @genres = []
+    @labels = []
     @games = load_games_from_json
     @authors = []
   end

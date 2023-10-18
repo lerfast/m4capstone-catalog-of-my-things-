@@ -98,7 +98,7 @@ include List
       puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
     end
     album = MusicAlbum.new(album_publish_date)
-    Decorator.decorate(album)
+    Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
     puts 'Album added successfully!'
   end
