@@ -95,14 +95,7 @@ include List
   end
 
   def add_album
-    album_publish_date = ''
-    loop do
-      puts 'Enter the publish date of the album (YYYY-MM-DD):'
-      album_publish_date = gets.chomp
-      break if valid_date?(album_publish_date)
-
-      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
-    end
+    album_publish_date = verify_publish_date
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
@@ -141,10 +134,19 @@ include List
 
   # Añade este método de validación al módulo Options
   def valid_date?(date_str)
-    Date.parse(date_str)
-    true
-  rescue ArgumentError
-    false
+    date_str.match?(/^\d{4}-\d{2}-\d{2}$/)
+  end
+
+  def verify_publish_date
+    publish_date = ''
+    loop do
+      puts 'Enter the publish date of the album (YYYY-MM-DD):'
+      publish_date = gets.chomp
+      break if valid_date?(publish_date)
+
+      puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
+    end
+    publish_date
   end
 
   def save_game_to_json(game)
