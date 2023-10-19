@@ -10,14 +10,14 @@ module SaveAlbum
       on_spotify: album.on_spotify
     }
 
-    File.open('albums.json', 'a') do |file|
+    File.open('data/albums.json', 'a') do |file|
       file.puts(data.to_json)
     end
   end
 
   def self.load_albums
     albums = []
-    File.open('albums.json', 'r') do |file|
+    File.open('data/albums.json', 'r') do |file|
       file.each_line do |line|
         data = JSON.parse(line)
 
