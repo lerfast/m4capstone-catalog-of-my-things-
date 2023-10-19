@@ -161,7 +161,7 @@ module Options
     puts 'Book added successfully.'
     @books << book
   end
-  
+
   def add_game
     game_publish_date = verify_publish_date
 
@@ -223,6 +223,10 @@ module Options
     end
 
     games
+  end
+
+  def load_albums_from_json
+    SaveAlbum.load_albums
   end
 
   def show_error

@@ -16,7 +16,6 @@ class Item
     @author = author
     @genre = genre
     @label = label
-
   rescue ArgumentError => e
     puts e.message
   end
