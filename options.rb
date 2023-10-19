@@ -94,10 +94,7 @@ module Options
     if @games.empty?
       puts 'No games available.'
     else
-      @games.each_with_index do |game, index|
-        puts "#{index + 1}.Date: #{game.publish_date} " \
-             "Multiplayer: #{game.multiplayer} Last played at: #{game.last_played_at}"
-      end
+      List.list_items(@games)
     end
   end
 
@@ -177,7 +174,7 @@ module Options
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
     SaveGame.save_game_to_json(game)
-    
+
 
     puts '----------------------------------------------'
     puts 'Game added successfully!!!'
@@ -200,7 +197,6 @@ module Options
     end
     publish_date
   end
-
 
   def load_games_from_json
     SaveGame.load_games_from_json
