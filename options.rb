@@ -5,11 +5,14 @@ require_relative 'classes/label'
 require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
+require_relative 'modules/save_album'
+require_relative 'modules/save_genre'
 require 'json'
 
 module Options
   include Decorator
   include List
+  include SaveAlbum
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
@@ -127,6 +130,7 @@ module Options
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
+    SaveAlbum.save_album(album)
     puts '----------------------------------------------'
     puts 'Album added successfully!'
     puts '----------------------------------------------'
@@ -158,7 +162,7 @@ module Options
     puts 'Book added successfully.'
     @books << book
   end
-  
+
   def add_game
     game_publish_date = verify_publish_date
 
@@ -220,6 +224,14 @@ module Options
     end
 
     games
+  end
+
+  def load_albums_from_json
+    SaveAlbum.load_albums
+  end
+
+  def load_genres_from_json
+    SaveGenre.load_genres
   end
 
   def show_error
