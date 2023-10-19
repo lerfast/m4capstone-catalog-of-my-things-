@@ -2,6 +2,7 @@ require_relative 'classes/game'
 require_relative 'classes/music_album'
 require_relative 'classes/book'
 require_relative 'classes/label'
+require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
 require 'json'
@@ -116,14 +117,6 @@ module Options
       puts 'List of Labels:'
       @labels.each do |label|
         puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
-        puts 'Items:'
-        if label.items.empty?
-          puts 'No items associated with this label.'
-        else
-          label.items.each do |item|
-            puts "- #{item.title}"
-          end
-        end
         puts '----------------------------------------------'
       end
     end
@@ -158,11 +151,11 @@ module Options
     end
 
     print 'Publish date (YYYY-MM-DD): '
-    publish_date = gets.chomp
+    publish_date = verify_publish_date
 
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     puts 'Book added successfully.'
-    book
+    @books << book
   end
 
   def add_game
