@@ -1,6 +1,7 @@
 require_relative 'classes/game'
 require_relative 'classes/music_album'
 require_relative 'classes/book'
+require_relative 'classes/label'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
 require 'json'
@@ -63,6 +64,18 @@ module Options
     end
   end
 
+  def list_books
+    if @books.empty?
+      puts 'No books available.'
+    else
+      puts 'List of Books:'
+      @books.each do |book|
+        puts "ID: #{book.id}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date}"
+        puts '----------------------------------------------'
+      end
+    end
+  end
+
   def list_albums
     if @albums.empty?
       puts 'No albums available.'
@@ -115,7 +128,7 @@ module Options
       end
     end
   end
-  
+
   def add_album
     album_publish_date = verify_publish_date
     album = MusicAlbum.new(album_publish_date)
