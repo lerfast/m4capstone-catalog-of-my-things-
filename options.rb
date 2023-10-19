@@ -5,11 +5,13 @@ require_relative 'classes/label'
 require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
+require_relative 'modules/save_album'
 require 'json'
 
 module Options
   include Decorator
   include List
+  include SaveAlbum
   def display_options
     loop do
       puts 'Please choose an option by entering a number:'
@@ -127,6 +129,7 @@ module Options
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
+    SaveAlbum.save_album(album)
     puts '----------------------------------------------'
     puts 'Album added successfully!'
     puts '----------------------------------------------'

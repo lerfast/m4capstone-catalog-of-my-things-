@@ -2,20 +2,21 @@ require 'securerandom'
 require 'date'
 
 class Item
-  attr_accessor :source
   attr_reader :publish_date, :id, :archived, :label, :genre, :author
 
-  def initialize(publish_date, author = nil, archived: false)
+  def initialize(publish_date, id: SecureRandom.uuid, archived: false, author: nil, genre: nil, label: nil)
     unless valid_date_format?(publish_date)
       raise ArgumentError,
             'Invalid publish_date format. Please use YYYY-MM-DD.'
     end
 
-    @id = SecureRandom.uuid
     @publish_date = Date.parse(publish_date)
-    @author = author
+    @id = id
     @archived = archived
-    @genre = nil
+    @author = author
+    @genre = genre
+    @label = label
+
   rescue ArgumentError => e
     puts e.message
   end
