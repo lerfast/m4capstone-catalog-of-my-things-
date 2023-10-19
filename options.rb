@@ -1,5 +1,8 @@
 require_relative 'classes/game'
 require_relative 'classes/music_album'
+require_relative 'classes/book'
+require_relative 'classes/label'
+require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
 require 'json'
@@ -45,7 +48,9 @@ module Options
     3 => :list_movies,
     4 => :list_games,
     5 => :list_genres,
+    6 => :list_labels,
     7 => :list_authors,
+    9 => :add_book,
     10 => :add_album,
     12 => :add_game,
     0 => :quit
@@ -57,6 +62,18 @@ module Options
       send(action)
     else
       show_error
+    end
+  end
+
+  def list_books
+    if @books.empty?
+      puts 'No books available.'
+    else
+      puts 'List of Books:'
+      @books.each do |book|
+        puts "ID: #{book.id}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date}"
+        puts '----------------------------------------------'
+      end
     end
   end
 
@@ -93,6 +110,18 @@ module Options
     end
   end
 
+  def list_labels
+    if @labels.empty?
+      puts 'No labels available.'
+    else
+      puts 'List of Labels:'
+      @labels.each do |label|
+        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
+        puts '----------------------------------------------'
+      end
+    end
+  end
+
   def add_album
     album_publish_date = verify_publish_date
     album = MusicAlbum.new(album_publish_date)
@@ -104,6 +133,32 @@ module Options
   end
   # Dentro del módulo Options
 
+  def add_book
+    print 'Publisher: '
+    publisher = gets.chomp
+
+    while true
+      print 'Cover state (select 1 for "good" or 2 for "bad" ): '
+      cover_option = gets.chomp.to_i
+
+      case cover_option
+      when 1 then cover_state = 'good'
+      when 2 then cover_state = 'bad'
+      else
+        puts "Wrong option \n\n"
+        next
+      end
+      break
+    end
+
+    publish_date = verify_publish_date
+
+    book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
+    Decorator.decorate(book, @authors, @genres, @labels)
+    puts 'Book added successfully.'
+    @books << book
+  end
+  
   def add_game
     game_publish_date = verify_publish_date
 
