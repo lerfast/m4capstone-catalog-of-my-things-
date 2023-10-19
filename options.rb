@@ -142,11 +142,11 @@ module Options
   def add_book
     print 'Publisher: '
     publisher = gets.chomp
-  
+
     while true
       print 'Cover state (select 1 for "good" or 2 for "bad" ): '
       cover_option = gets.chomp.to_i
-  
+
       case cover_option
       when 1 then cover_state = 'good'
       when 2 then cover_state = 'bad'
@@ -156,10 +156,10 @@ module Options
       end
       break
     end
-  
+
     print 'Publish date (YYYY-MM-DD): '
     publish_date = gets.chomp
-  
+
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     puts 'Book added successfully.'
     book
@@ -246,5 +246,4 @@ module Options
     puts 'Saving your data ...'
     exit
   end
-  
 end
