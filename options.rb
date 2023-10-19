@@ -6,6 +6,7 @@ require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
 require_relative 'modules/save_album'
+require_relative 'modules/save_genre'
 require 'json'
 
 module Options
@@ -227,6 +228,10 @@ module Options
 
   def load_albums_from_json
     SaveAlbum.load_albums
+  end
+
+  def load_genres_from_json
+    SaveGenre.load_genres
   end
 
   def show_error
