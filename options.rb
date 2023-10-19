@@ -154,10 +154,11 @@ module Options
     publish_date = verify_publish_date
 
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
+    Decorator.decorate(book, @authors, @genres, @labels)
     puts 'Book added successfully.'
     @books << book
   end
-
+  
   def add_game
     publish_date = ''
     loop do
