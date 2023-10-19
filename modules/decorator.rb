@@ -4,7 +4,7 @@ require_relative '../classes/label'
 require_relative 'save_genre'
 
 module Decorator
-include SaveGenre
+  include SaveGenre
   def self.decorate(item, authors, genres, labels)
     puts 'first name of the author is:'
     author_first_name = gets.chomp
