@@ -3,7 +3,7 @@ require_relative 'item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date, multiplayer, last_played_at, archived: false)
+  def initialize(publish_date, multiplayer, last_played_at, archived: false, author: nil, genre: nil, label: nil)
     loop do
       break if valid_date_format?(last_played_at)
 
@@ -11,7 +11,7 @@ class Game < Item
       last_played_at = gets.chomp
     end
 
-    super(publish_date, archived: archived)
+    super(publish_date, archived: archived, author: author, genre: genre, label: label)
     @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at)
   end
