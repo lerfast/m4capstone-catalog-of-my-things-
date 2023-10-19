@@ -11,11 +11,11 @@ module SaveLabel
     end
   
     def self.load_labels
-      label = []
+      labels = []
       File.open('data/labels.json', 'r') do |file|
         file.each_line do |line|
           data = JSON.parse(line)
-          label = Label.new(data['title'], data['color'])
+          label = Label.new(title: data['title'], color: data['color'])
           labels << label
         end
       end
