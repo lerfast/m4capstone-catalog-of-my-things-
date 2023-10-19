@@ -175,7 +175,6 @@ module Options
     @games << game
     SaveGame.save_game_to_json(game)
 
-
     puts '----------------------------------------------'
     puts 'Game added successfully!!!'
     puts '----------------------------------------------'
