@@ -11,7 +11,8 @@ CREATE TABLE public."Genre"
 -- Label table
 CREATE TABLE label(
   ID SERIAL PRIMARY KEY,
-  name VARCHAR(30)
+  name VARCHAR(30),
+  color VARCHAR(30)
 );
 
 -- Author table
