@@ -10,6 +10,7 @@ require_relative 'modules/save_genre'
 require_relative 'modules/save_label'
 require_relative 'modules/save_book'
 require_relative 'modules/save_game'
+require_relative 'modules/save_author'
 require 'json'
 module Options
   include Decorator
@@ -201,6 +202,10 @@ module Options
 
   def load_books_from_json
     SaveBook.load_books
+  end
+
+  def load_authors_from_json
+    SaveAuthor.load_authors
   end
 
   def show_error

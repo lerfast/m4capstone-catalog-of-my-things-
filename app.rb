@@ -11,7 +11,7 @@ class App
     @genres = load_genres_from_json
     @labels = load_labels_from_json
     @games = load_games_from_json
-    @authors = []
+    @authors = load_authors_from_json
   end
 
   def run
