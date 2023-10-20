@@ -31,12 +31,14 @@ module SaveBook
           label_data = data['label']
           label = Label.new(title: label_data['name'], color: label_data['color'])
           book = Book.new(data['publish_date'],
+                                 cover_state: data['cover_state'],
+                                 publisher: data['publisher'],
                                  id: data['id'],
                                  archived: data['archived'],
                                  author: author,
                                  genre: genre,
                                  label: label,
-                                 on_spotify: data['on_spotify'])
+                                 )
           books << book
         end
       end
