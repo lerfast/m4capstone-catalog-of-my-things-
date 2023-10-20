@@ -11,7 +11,6 @@ require_relative 'modules/save_label'
 require_relative 'modules/save_book'
 require_relative 'modules/save_game'
 require 'json'
-
 module Options
   include Decorator
   include List
@@ -22,20 +21,15 @@ module Options
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books.'
       puts '2 - List all music albums.'
-      puts '3 - List all movies.'
-      puts '4 - List of games.'
-      puts '5 - List all genres.'
-      puts '6 - List all labels.'
-      puts '7 - List all authors.'
-      puts '8 - List all sources.'
-      puts '9 - Add a book.'
-      puts '10 - Add a music album.'
-      puts '11 - Add a movie.'
-      puts '12 - Add a game.'
+      puts '3 - List of games.'
+      puts '4 - List all genres.'
+      puts '5 - List all labels.'
+      puts '6 - List all authors.'
+      puts '7 - Add a book.'
+      puts '8 - Add a music album.'
+      puts '9 - Add a game.'
       puts '0 - Quit.'
-
       option = gets.chomp
-
       if number?(option)
         process_input(option.to_i)
       else
@@ -48,21 +42,18 @@ module Options
     obj = obj.to_s unless obj.is_a? String
     /\A[+-]?\d+(\.\d+)?\z/.match(obj)
   end
-
   OPTION_ACTIONS = {
     1 => :list_books,
     2 => :list_albums,
-    3 => :list_movies,
-    4 => :list_games,
-    5 => :list_genres,
-    6 => :list_labels,
-    7 => :list_authors,
-    9 => :add_book,
-    10 => :add_album,
-    12 => :add_game,
+    3 => :list_games,
+    4 => :list_genres,
+    5 => :list_labels,
+    6 => :list_authors,
+    7 => :add_book,
+    8 => :add_album,
+    9 => :add_game,
     0 => :quit
   }.freeze
-
   def process_input(option)
     action = OPTION_ACTIONS[option]
     if action
@@ -140,11 +131,9 @@ module Options
   def add_book
     print 'Publisher: '
     publisher = gets.chomp
-
     while true
       print 'Cover state (select 1 for "good" or 2 for "bad" ): '
       cover_option = gets.chomp.to_i
-
       case cover_option
       when 1 then cover_state = 'good'
       when 2 then cover_state = 'bad'
@@ -154,35 +143,30 @@ module Options
       end
       break
     end
-
     publish_date = verify_publish_date('Enter the publish date of the book (YYYY-MM-DD):')
-
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     Decorator.decorate(book, @authors, @genres, @labels)
+    puts '----------------------------------------------'
     puts 'Book added successfully.'
+    puts '----------------------------------------------'
     @books << book
     SaveBook.save_book(book)
   end
 
   def add_game
     game_publish_date = verify_publish_date
-
     puts 'Thats the game has multiplayer? (y/n)'
     game_multiplayer = gets.chomp
-
     game_last_played_date = verify_publish_date('Enter the last played date of the game (YYYY-MM-DD):')
-
     game = Game.new(game_publish_date, game_multiplayer, game_last_played_date)
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
     SaveGame.save_game_to_json(game)
-
     puts '----------------------------------------------'
     puts 'Game added successfully!!!'
     puts '----------------------------------------------'
   end
 
-  # Añade este método de validación al módulo Options
   def valid_date?(date_str)
     date_str.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
