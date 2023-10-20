@@ -62,9 +62,9 @@ CREATE TABLE book(
   FOREIGN KEY(genre_ID) REFERENCES genre(ID)
 );
 
--- Game table
+
 CREATE TABLE games (
-    id TEXT PRIMARY KEY, -- UUID
+    id TEXT PRIMARY KEY, 
     name TEXT NOT NULL,
     publish_date DATE NOT NULL,
     genre_id INTEGER,
@@ -72,8 +72,8 @@ CREATE TABLE games (
     label_id INTEGER,
     author_id INTEGER,
     archived BOOLEAN DEFAULT FALSE,
-    multiplayer BOOLEAN, -- Solo es relevante para juegos, podría ser NULL para otros items
-    last_played_at DATE, -- Solo es relevante para juegos, podría ser NULL para otros items
+    multiplayer BOOLEAN, 
+    last_played_at DATE, 
     FOREIGN KEY (genre_id) REFERENCES genres (id),
     FOREIGN KEY (source_id) REFERENCES sources (id),
     FOREIGN KEY (label_id) REFERENCES labels (id),
