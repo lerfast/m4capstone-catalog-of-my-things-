@@ -30,15 +30,15 @@ module SaveBook
   
           label_data = data['label']
           label = Label.new(title: label_data['name'], color: label_data['color'])
-          book = Book.new(data['publish_date'],
-                                 cover_state: data['cover_state'],
-                                 publisher: data['publisher'],
-                                 id: data['id'],
-                                 archived: data['archived'],
-                                 author: author,
-                                 genre: genre,
-                                 label: label,
-                                 )
+         
+          book = Book.new(publisher: data['publisher'],
+          cover_state: data['cover_state'],
+          publish_date: data['publish_date'],
+          id: data['id'],
+          archived: data['archived'],
+          author: author,
+          genre: genre,
+          label: label)
           books << book
         end
       end
@@ -65,3 +65,4 @@ module SaveBook
       }
     end
   end
+  
