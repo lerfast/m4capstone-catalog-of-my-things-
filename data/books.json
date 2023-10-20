@@ -1,2 +1,3 @@
 {"publisher":"Mc Graw Hill","cover_state":"good","publish_date":"1996-12-09","id":950,"archived":false,"author":{"first_name":"Marco","last_name":"Cantu"},"genre":{"name":"Programming"},"label":{"name":"Gift","color":"Blue"}}
 {"publisher":"Amazon","cover_state":"good","publish_date":"2015-10-09","id":832,"archived":false,"author":{"first_name":"Todd","last_name":"Helton"},"genre":{"name":"Sports"},"label":{"name":"New","color":"Green"}}
+{"publisher":"Test","cover_state":"bad","publish_date":"2020-12-12","id":940,"archived":false,"author":{"first_name":"Final","last_name":"Test"},"genre":{"name":"Science"},"label":{"name":"New","color":"Black"}}
