@@ -37,6 +37,7 @@ module Options
       end
     end
   end
+
   def number?(obj)
     obj = obj.to_s unless obj.is_a? String
     /\A[+-]?\d+(\.\d+)?\z/.match(obj)
@@ -61,6 +62,7 @@ module Options
       show_error
     end
   end
+
   def list_books
     if @books.empty?
       puts 'No books available.'
@@ -72,6 +74,7 @@ module Options
       end
     end
   end
+
   def list_albums
     if @albums.empty?
       puts 'No albums available.'
@@ -79,6 +82,7 @@ module Options
       List.list_items(@albums)
     end
   end
+
   def list_games
     if @games.empty?
       puts 'No games available.'
@@ -86,9 +90,11 @@ module Options
       List.list_items(@games)
     end
   end
+
   def list_genres
     List.list_genres(@genres)
   end
+
   def list_authors
     if @authors.empty?
       puts 'No authors available.'
@@ -98,6 +104,7 @@ module Options
       end
     end
   end
+
   def list_labels
     if @labels.empty?
       puts 'No labels available.'
@@ -109,6 +116,7 @@ module Options
       end
     end
   end
+
   def add_album
     album_publish_date = verify_publish_date
     album = MusicAlbum.new(album_publish_date)
@@ -119,6 +127,7 @@ module Options
     puts 'Album added successfully!'
     puts '----------------------------------------------'
   end
+
   def add_book
     print 'Publisher: '
     publisher = gets.chomp
@@ -143,6 +152,7 @@ module Options
     @books << book
     SaveBook.save_book(book)
   end
+
   def add_game
     game_publish_date = verify_publish_date
     puts 'Thats the game has multiplayer? (y/n)'
@@ -156,37 +166,47 @@ module Options
     puts 'Game added successfully!!!'
     puts '----------------------------------------------'
   end
+
   def valid_date?(date_str)
     date_str.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
+
   def verify_publish_date(prompt = 'Enter the publish date of the item (YYYY-MM-DD):')
     publish_date = ''
     loop do
       puts prompt
       publish_date = gets.chomp
       break if valid_date?(publish_date)
+
       puts 'Invalid date! Please enter a valid date in the format YYYY-MM-DD.'
     end
     publish_date
   end
+
   def load_games_from_json
     SaveGame.load_games_from_json
   end
+
   def load_albums_from_json
     SaveAlbum.load_albums
   end
+
   def load_genres_from_json
     SaveGenre.load_genres
   end
+
   def load_labels_from_json
     SaveLabel.load_labels
   end
+
   def load_books_from_json
     SaveBook.load_books
   end
+
   def show_error
     puts 'Error! Please select a valid option.'
   end
+
   def quit
     puts 'Saving your data ...'
     exit
