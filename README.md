@@ -18,11 +18,9 @@
     - [🚀 Video Link](#video-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -102,7 +100,7 @@ You can also create the new directory just adding the name of it in the end of c
 ```
 git clone https://github.com/lerfast/m4capstone-catalog-of-my-things-.git catalog
 ```
-### Installation <a name="installation"></a>
+### Installation <a name="install"></a>
 
 To run this project locally, follow these steps:
 
@@ -128,7 +126,7 @@ ruby main.rb
 
 3.If you have future features like GUI or interactive mode, follow the specific instructions provided for those features in the app's documentation.
 
-### Tests <a name="tests"></a>
+### Tests <a name="run-tests"></a>
 
 To run the tests ensure you are in the directory containing the test files.
 
