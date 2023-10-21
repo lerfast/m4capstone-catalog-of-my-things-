@@ -21,26 +21,25 @@ module Options
   include SaveGame
   def display_options
     puts '
-    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
-    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
-    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
-    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
-    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
-     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
-
-    '.light_blue.underline
+██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
+ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
+ '.light_blue
     loop do
       puts 'Please choose an option by entering a number:'
-      puts '1 - List all books.'
-      puts '2 - List all music albums.'
-      puts '3 - List of games.'
-      puts '4 - List all genres.'
-      puts '5 - List all labels.'
-      puts '6 - List all authors.'
-      puts '7 - Add a book.'
-      puts '8 - Add a music album.'
-      puts '9 - Add a game.'
-      puts '0 - Quit.'
+      puts '1 - List all books.'.light_green
+      puts '2 - List all music albums.'.light_cyan
+      puts '3 - List of games.'.light_yellow
+      puts '4 - List all genres.'.light_magenta
+      puts '5 - List all labels.'.cyan
+      puts '6 - List all authors.'.red
+      puts '7 - Add a book.'.light_green
+      puts '8 - Add a music album.'.light_cyan
+      puts '9 - Add a game.'.light_yellow
+      puts '0 - Quit.'.light_blue
       option = gets.chomp
       if number?(option)
         process_input(option.to_i)
@@ -88,7 +87,7 @@ module Options
    //__.....----~~~~._\\ | /_.~~~~----.....__\\\\
   ====================\\\\|//====================
                       `---`
-      ".colorize(color: :light_blue, mode: :bold)
+      ".colorize(color: :light_green, mode: :bold)
       List.list_items(@books)
     end
   end
@@ -104,7 +103,7 @@ __/|____4___|__O_____|_|___|__O.______|_|@__|____|___|_|___|O.______o||
 _(_/^\\__4__@|_|_____@__|___|_|________|_|@__|____|___|_|___|________o||
 __\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
    d          |           @  |          |
-      ".colorize(color: :light_blue, mode: :bold)
+      ".colorize(color: :light_cyan, mode: :bold)
       List.list_items(@albums)
     end
   end
@@ -121,62 +120,37 @@ o  o|~~  |(_) /   ;       | ~~ | |  ~~|o  o  o  o  o  o  o  o  o  o  o
     |/\\/\\|   '._,'        |/\\/\\| |/\\/\\|
 __________________        ____________________________________________
                   |      |
-                  ".colorize(color: :light_blue, mode: :bold)
+                  ".colorize(color: :light_yellow, mode: :bold)
       List.list_items(@games)
     end
   end
 
   def list_genres
     puts "
-     _____
-    / ____|
-   | |  __  ___ _ __  _ __ ___  ___
-   | | |_ |/ _ \\ '_ \\| '__/ _ \\/ __|
-   | |__| |  __/ | | | | |  __/\\__ \
-\\
-   \\ _____|\\___|_| |_|_|  \\___||___/
-    ".colorize(color: :light_blue, mode: :bold)
+█▀▀ █▀▀ █▄░█ █▀█ █▀▀ █▀
+█▄█ ██▄ █░▀█ █▀▄ ██▄ ▄█".light_magenta
     List.list_genres(@genres)
   end
 
   def list_labels
     puts "
-     _           _          _
-    | |         | |        | |
-    | |     __ _| |__   ___| |___
-    | |    / _` | '_ \\ / _ \\ / __|
-    | |___| (_| | |_) |  __/ \\__ \
-\\
-    |______\\__,_|_.__/ \\___|_|___/
-    ".colorize(color: :light_blue, mode: :bold)
+█░░ ▄▀█ █▄▄ █▀▀ █░░ █▀
+█▄▄ █▀█ █▄█ ██▄ █▄▄ ▄█".cyan
     List.list_labels(@labels)
   end
 
   def list_authors
     puts "
-               _   _
-    /\\        | | | |
-   /  \\  _   _| |_| |__   ___  _ __ ___
-  / /\\ \\| | | | __| '_ \\ / _ \\| '__/ __|
- / ____ \\ |_| | |_| | | | (_) | |  \\__ \
-\\
-/_/    \\_\\__,_|\\__|_| |_|\\___/|_|  |___/
-      ".colorize(color: :light_blue, mode: :bold)
+▄▀█ █░█ ▀█▀ █░█ █▀█ █▀█ █▀
+█▀█ █▄█ ░█░ █▀█ █▄█ █▀▄ ▄█".red
     List.list_authors(@authors)
   end
 
-  def add_album
-    album_publish_date = verify_publish_date
-    album = MusicAlbum.new(album_publish_date)
-    Decorator.decorate(album, @authors, @genres, @labels)
-    @albums << album
-    SaveAlbum.save_album(album)
-    puts '----------------------------------------------'
-    puts 'Album added successfully!'
-    puts '----------------------------------------------'
-  end
-
   def add_book
+    puts "
+
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█   █▄▄ █▀█ █▀█ █▄▀
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█   █▄█ █▄█ █▄█ █░█".light_green
     print 'Publisher: '
     publisher = gets.chomp
     while true
@@ -194,14 +168,41 @@ __________________        ____________________________________________
     publish_date = verify_publish_date('Enter the publish date of the book (YYYY-MM-DD):')
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     Decorator.decorate(book, @authors, @genres, @labels)
-    puts '----------------------------------------------'
-    puts 'Book added successfully.'
-    puts '----------------------------------------------'
     @books << book
     SaveBook.save_book(book)
+    puts "
+
+╔══╗──────╔╗───────╔╗─╔╗────╔╗
+║╔╗║──────║║───────║║─║║────║║
+║╚╝╚╦══╦══╣║╔╗╔══╦═╝╠═╝╠══╦═╝║
+║╔═╗║╔╗║╔╗║╚╝╝║╔╗║╔╗║╔╗║║═╣╔╗║
+║╚═╝║╚╝║╚╝║╔╗╗║╔╗║╚╝║╚╝║║═╣╚╝║
+╚═══╩══╩══╩╝╚╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_green, mode: :bold)
+  end
+
+  def add_album
+    puts "
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█ █▄░█   ▄▀█ █░░ █▄▄ █░█ █▀▄▀█
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█ █░▀█   █▀█ █▄▄ █▄█ █▄█ █░▀░█".light_cyan
+    album_publish_date = verify_publish_date
+    album = MusicAlbum.new(album_publish_date)
+    Decorator.decorate(album, @authors, @genres, @labels)
+    @albums << album
+    SaveAlbum.save_album(album)
+    puts "
+╔═══╦╗╔╗─────────────╔╗─╔╗────╔╗
+║╔═╗║║║║─────────────║║─║║────║║
+║║─║║║║╚═╦╗╔╦╗╔╗╔══╦═╝╠═╝╠══╦═╝║
+║╚═╝║║║╔╗║║║║╚╝║║╔╗║╔╗║╔╗║║═╣╔╗║
+║╔═╗║╚╣╚╝║╚╝║║║║║╔╗║╚╝║╚╝║║═╣╚╝║
+╚╝─╚╩═╩══╩══╩╩╩╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_cyan, mode: :bold)
   end
 
   def add_game
+    puts "
+
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█   █▀▀ ▄▀█ █▀▄▀█ █▀▀
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█   █▄█ █▀█ █░▀░█ ██▄".light_yellow
     game_publish_date = verify_publish_date
     puts 'Thats the game has multiplayer? (y/n)'
     game_multiplayer = gets.chomp
@@ -210,9 +211,13 @@ __________________        ____________________________________________
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
     SaveGame.save_game_to_json(game)
-    puts '----------------------------------------------'
-    puts 'Game added successfully!!!'
-    puts '----------------------------------------------'
+    puts "
+╔═══╗──────────────╔╗─╔╗────╔╗
+║╔═╗║──────────────║║─║║────║║
+║║─╚╬══╦╗╔╦══╗╔══╦═╝╠═╝╠══╦═╝║
+║║╔═╣╔╗║╚╝║║═╣║╔╗║╔╗║╔╗║║═╣╔╗║
+║╚╩═║╔╗║║║║║═╣║╔╗║╚╝║╚╝║║═╣╚╝║
+╚═══╩╝╚╩╩╩╩══╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_yellow, mode: :bold)
   end
 
   def valid_date?(date_str)

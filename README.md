@@ -1,8 +1,11 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h3><b>Catalog Of My Things</b></h3>
+  <h1><b>Catalog Of My Things</b></h1>
 </div>
+
+
+![Welcome](https://github.com/tomasesquivelgc/My-Things-Catalog/assets/117373513/022aa3e3-98c4-4321-85ee-0407470b9468)
 
 
 <a name="readme-top"></a>
@@ -15,11 +18,9 @@
     - [🚀 Video Link](#video-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -31,7 +32,11 @@
 
 # 📖 Catalog of my Things <a name="about-project"></a>
 
-**Catalog of my Things** In this project you will learn how to use a module inside your class.
+**Catalog of my Things** Is our Capstone Project for Microverse Module 4: Ruby. In this app you can store your desired Items (music albums, games, or books) with their respective author, genre and label. You can also see a full list of each class!
+
+
+![Properties_list](https://github.com/tomasesquivelgc/My-Things-Catalog/assets/117373513/4467b189-1e89-4aa1-ba96-e0f389cde531)
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -95,7 +100,7 @@ You can also create the new directory just adding the name of it in the end of c
 ```
 git clone https://github.com/lerfast/m4capstone-catalog-of-my-things-.git catalog
 ```
-### Installation <a name="installation"></a>
+### Installation <a name="install"></a>
 
 To run this project locally, follow these steps:
 
@@ -121,7 +126,7 @@ ruby main.rb
 
 3.If you have future features like GUI or interactive mode, follow the specific instructions provided for those features in the app's documentation.
 
-### Tests <a name="tests"></a>
+### Tests <a name="run-tests"></a>
 
 To run the tests ensure you are in the directory containing the test files.
 
@@ -169,8 +174,9 @@ rspec
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-More data
+-[ ] Movie Data
+-[ ] Erase Items
+-[ ] Item Source
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
