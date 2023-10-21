@@ -16,7 +16,7 @@ module Decorator
     author_last_name = gets.chomp
     item.author = Author.new(author_first_name, author_last_name)
     authors << item.author
-
+    item.author.add_item(item)
 
     puts 'name of the genre is:'
     genre_name = gets.chomp
@@ -31,6 +31,7 @@ module Decorator
     label_color = gets.chomp
     item.label = Label.new(title: label_title, color: label_color)
     labels << item.label
+    item.label.add_item(item)
 
     SaveAuthor.save_author(item.author)
     SaveGenre.save_genre(item.genre)

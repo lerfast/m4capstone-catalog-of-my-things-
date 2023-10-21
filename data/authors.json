@@ -1,12 +1,2 @@
-{"first_name":"Harper","last_name":"Lee"}
-{"first_name":"Metallica","last_name":""}
-{"first_name":"Rich","last_name":"Gaubert"}
-{"first_name":"Jhonny","last_name":"Cage"}
-{"first_name":"qwe","last_name":"qwe"}
-{"first_name":"qwe","last_name":"qwe"}
-{"first_name":"qwer","last_name":"qwer"}
-{"first_name":"qwe","last_name":"qwe"}
-{"first_name":"wqer","last_name":"-qwer"}
-{"first_name":"qwerwqerwqe","last_name":"qewrqwer"}
-{"first_name":"qwer","last_name":"qwer"}
-{"first_name":"tomas","last_name":"esquivel"}
+{"first_name":"TOMAS","last_name":"ESQUIVEL","items":[{"id":"cf3174ee-b79c-4f07-8b58-59fa58bea4cb","class":"Book"}]}
+{"first_name":"TOMAS","last_name":"ESQUIVEL","items":[{"id":"58001e42-e0da-4e53-be1a-c383ec0a3e9f","class":"MusicAlbum"}]}

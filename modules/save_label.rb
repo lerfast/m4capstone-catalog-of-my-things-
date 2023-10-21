@@ -2,7 +2,8 @@ module SaveLabel
   def self.save_labels(label)
     data = {
       title: label.title,
-      color: label.color
+      color: label.color,
+      items: items_to_h(label.items)
     }
 
     File.open('data/labels.json', 'a') do |file|
@@ -15,10 +16,19 @@ module SaveLabel
     File.open('data/labels.json', 'r') do |file|
       file.each_line do |line|
         data = JSON.parse(line)
-        label = Label.new(title: data['title'], color: data['color'])
+        label = Label.new(title: data['title'], color: data['color'], items: data['items'])
         labels << label
       end
     end
     labels
+  end
+
+  def self.items_to_h(items)
+    items.map do |item|
+      {
+        id: item.id,
+        class: item.class.to_s
+      }
+    end
   end
 end

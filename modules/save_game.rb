@@ -3,9 +3,9 @@ module SaveGame
     data = {
       publish_date: game.publish_date,
       archived: game.archived,
-      author: author_to_h(game.author),
-      genre: genre_to_h(game.genre),
-      label: label_to_h(game.label),
+      author: game.author.to_h,
+      genre: game.genre.to_h,
+      label: game.label.to_h,
       multiplayer: game.multiplayer,
       last_played_at: game.last_played_at.to_s
 
@@ -41,25 +41,5 @@ module SaveGame
       end
     end
     games
-  end
-
-  def self.author_to_h(author)
-    {
-      first_name: author.first_name,
-      last_name: author.last_name
-    }
-  end
-
-  def self.genre_to_h(genre)
-    {
-      name: genre.name
-    }
-  end
-
-  def self.label_to_h(label)
-    {
-      name: label.title,
-      color: label.color
-    }
   end
 end

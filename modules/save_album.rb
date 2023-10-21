@@ -4,9 +4,9 @@ module SaveAlbum
       publish_date: album.publish_date,
       id: album.id,
       archived: album.archived,
-      author: author_to_h(album.author),
-      genre: genre_to_h(album.genre),
-      label: label_to_h(album.label),
+      author: album.author.to_h,
+      genre: album.genre.to_h,
+      label: album.label.to_h,
       on_spotify: album.on_spotify
     }
 
@@ -40,25 +40,5 @@ module SaveAlbum
       end
     end
     albums
-  end
-
-  def self.author_to_h(author)
-    {
-      first_name: author.first_name,
-      last_name: author.last_name
-    }
-  end
-
-  def self.genre_to_h(genre)
-    {
-      name: genre.name
-    }
-  end
-
-  def self.label_to_h(label)
-    {
-      name: label.title,
-      color: label.color
-    }
   end
 end

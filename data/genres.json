@@ -1,1 +1,2 @@
-{"name":"ROCKANROLL","items":[{"id":"0c5a6741-8020-4e0e-954b-ba29c1744e13","label":{"id":312,"title":"spin me right round","color":"purple"},"author":{"id":"009cdac0-d3a6-4ce1-a41e-5421c3d89af1","first_name":"tomas","last_name":"esquivel"}},{"id":"0c5a6741-8020-4e0e-954b-ba29c1744e13","label":{"id":312,"title":"spin me right round","color":"purple"},"author":{"id":"009cdac0-d3a6-4ce1-a41e-5421c3d89af1","first_name":"tomas","last_name":"esquivel"}}]}
+{"name":"NOVELA","items":[{"id":"cf3174ee-b79c-4f07-8b58-59fa58bea4cb","class":"Book"}]}
+{"name":"NOVELA","items":[{"id":"58001e42-e0da-4e53-be1a-c383ec0a3e9f","class":"MusicAlbum"},{"id":"58001e42-e0da-4e53-be1a-c383ec0a3e9f","class":"MusicAlbum"}]}

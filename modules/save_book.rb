@@ -6,9 +6,9 @@ module SaveBook
       publish_date: book.publish_date,
       id: book.id,
       archived: book.archived,
-      author: author_to_h(book.author),
-      genre: genre_to_h(book.genre),
-      label: label_to_h(book.label)
+      author: book.author.to_h,
+      genre: book.genre.to_h,
+      label: book.label.to_h
     }
 
     File.open('data/books.json', 'a') do |file|
@@ -43,25 +43,5 @@ module SaveBook
       end
     end
     books
-  end
-
-  def self.author_to_h(author)
-    {
-      first_name: author.first_name,
-      last_name: author.last_name
-    }
-  end
-
-  def self.genre_to_h(genre)
-    {
-      name: genre.name
-    }
-  end
-
-  def self.label_to_h(label)
-    {
-      name: label.title,
-      color: label.color
-    }
   end
 end
