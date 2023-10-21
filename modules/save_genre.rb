@@ -26,7 +26,8 @@ module SaveGenre
     items.map do |item|
       {
         id: item.id,
-        class: item.class.to_s
+        class: item.class.to_s,
+        title: item.label.title
       }
     end
   end
