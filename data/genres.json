@@ -1,7 +1,1 @@
-{"name":"Novel"}
-{"name":"Thrash Metal"}
-{"name":"Action"}
-{"name":"qwe","items":[[]]}
-{"name":"qer","items":[]}
-{"name":"TEST","items":[]}
-{"name":"GIANTEST","items":[{"id":789,"label":{},"author":{"id":"04a5a95d-ec3b-44a2-b92b-d1422ea4350b","first_name":"qwer","last_name":"qwer"}}]}
+{"name":"ROCKANROLL","items":[{"id":"0c5a6741-8020-4e0e-954b-ba29c1744e13","label":{"id":312,"title":"spin me right round","color":"purple"},"author":{"id":"009cdac0-d3a6-4ce1-a41e-5421c3d89af1","first_name":"tomas","last_name":"esquivel"}},{"id":"0c5a6741-8020-4e0e-954b-ba29c1744e13","label":{"id":312,"title":"spin me right round","color":"purple"},"author":{"id":"009cdac0-d3a6-4ce1-a41e-5421c3d89af1","first_name":"tomas","last_name":"esquivel"}}]}

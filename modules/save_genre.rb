@@ -15,7 +15,7 @@ module SaveGenre
     File.open('data/genres.json', 'r') do |file|
       file.each_line do |line|
         data = JSON.parse(line)
-        genre = Genre.new(data['name'])
+        genre = Genre.new(data['name'], items: data['items'])
         genres << genre
       end
     end
