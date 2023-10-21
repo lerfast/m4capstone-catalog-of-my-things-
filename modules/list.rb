@@ -20,4 +20,28 @@ module List
     end
     puts '----------------------------------------------'
   end
+
+  def self.list_labels(collection)
+    puts '----------------------------------------------'
+    if collection.empty?
+      puts 'This list is empty'
+    else
+      collection.each do |label|
+        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
+      end
+    end
+    puts '----------------------------------------------'
+  end
+
+  def self.list_authors(collection)
+    puts '----------------------------------------------'
+    if collection.empty?
+      puts 'This list is empty'
+    else
+      collection.each_with_index do |author, index|
+        puts "#{index + 1}. #{author.first_name} #{author.last_name}"
+      end
+    end
+    puts '----------------------------------------------'
+  end
 end

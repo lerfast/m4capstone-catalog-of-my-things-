@@ -11,13 +11,24 @@ require_relative 'modules/save_label'
 require_relative 'modules/save_book'
 require_relative 'modules/save_game'
 require_relative 'modules/save_author'
+require 'colorize'
 require 'json'
+
 module Options
   include Decorator
   include List
   include SaveAlbum
   include SaveGame
   def display_options
+    puts '
+    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
+     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
+
+    '.light_blue.underline
     loop do
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books.'
@@ -55,6 +66,7 @@ module Options
     9 => :add_game,
     0 => :quit
   }.freeze
+
   def process_input(option)
     action = OPTION_ACTIONS[option]
     if action
@@ -68,11 +80,16 @@ module Options
     if @books.empty?
       puts 'No books available.'
     else
-      puts 'List of Books:'
-      @books.each do |book|
-        puts "ID: #{book.id}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date}"
-        puts '----------------------------------------------'
-      end
+      puts "
+        __...--~~~~~-._   _.-~~~~~--...__
+      //               `V'               \\\\
+     //                 |                 \\\\
+    //__...--~~~~~~-._  |  _.-~~~~~~--...__\\\\
+   //__.....----~~~~._\\ | /_.~~~~----.....__\\\\
+  ====================\\\\|//====================
+                      `---`
+      ".colorize(color: :light_blue, mode: :bold)
+      List.list_items(@books)
     end
   end
 
@@ -80,6 +97,14 @@ module Options
     if @albums.empty?
       puts 'No albums available.'
     else
+      puts "
+___|\\_______|________|_______________________O__________@____________
+___|/_______|________|_|___|__________|__@__|_____@__|_|____O._______||
+__/|____4___|__O_____|_|___|__O.______|_|@__|____|___|_|___|O.______o||
+_(_/^\\__4__@|_|_____@__|___|_|________|_|@__|____|___|_|___|________o||
+__\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
+   d          |           @  |          |
+      ".colorize(color: :light_blue, mode: :bold)
       List.list_items(@albums)
     end
   end
@@ -88,34 +113,56 @@ module Options
     if @games.empty?
       puts 'No games available.'
     else
+      puts "
+__________________|      |____________________________________________
+     ,--.    ,--.          ,--.   ,--.
+    |oo  | _  \\  `.       | oo | |  oo|
+o  o|~~  |(_) /   ;       | ~~ | |  ~~|o  o  o  o  o  o  o  o  o  o  o
+    |/\\/\\|   '._,'        |/\\/\\| |/\\/\\|
+__________________        ____________________________________________
+                  |      |
+                  ".colorize(color: :light_blue, mode: :bold)
       List.list_items(@games)
     end
   end
 
   def list_genres
+    puts "
+     _____
+    / ____|
+   | |  __  ___ _ __  _ __ ___  ___
+   | | |_ |/ _ \\ '_ \\| '__/ _ \\/ __|
+   | |__| |  __/ | | | | |  __/\\__ \
+\\
+   \\ _____|\\___|_| |_|_|  \\___||___/
+    ".colorize(color: :light_blue, mode: :bold)
     List.list_genres(@genres)
   end
 
-  def list_authors
-    if @authors.empty?
-      puts 'No authors available.'
-    else
-      @authors.each_with_index do |author, index|
-        puts "#{index + 1}. #{author.first_name} #{author.last_name}"
-      end
-    end
+  def list_labels
+    puts "
+     _           _          _
+    | |         | |        | |
+    | |     __ _| |__   ___| |___
+    | |    / _` | '_ \\ / _ \\ / __|
+    | |___| (_| | |_) |  __/ \\__ \
+\\
+    |______\\__,_|_.__/ \\___|_|___/
+    ".colorize(color: :light_blue, mode: :bold)
+    List.list_labels(@labels)
   end
 
-  def list_labels
-    if @labels.empty?
-      puts 'No labels available.'
-    else
-      puts 'List of Labels:'
-      @labels.each do |label|
-        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
-        puts '----------------------------------------------'
-      end
-    end
+  def list_authors
+    puts "
+               _   _
+    /\\        | | | |
+   /  \\  _   _| |_| |__   ___  _ __ ___
+  / /\\ \\| | | | __| '_ \\ / _ \\| '__/ __|
+ / ____ \\ |_| | |_| | | | (_) | |  \\__ \
+\\
+/_/    \\_\\__,_|\\__|_| |_|\\___/|_|  |___/
+      ".colorize(color: :light_blue, mode: :bold)
+    List.list_authors(@authors)
   end
 
   def add_album
@@ -213,7 +260,14 @@ module Options
   end
 
   def quit
-    puts 'Saving your data ...'
+    puts "
+
+░██████╗░░█████╗░░█████╗░██████╗░██████╗░██╗░░░██╗███████╗██╗
+██╔════╝░██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚██╗░██╔╝██╔════╝██║
+██║░░██╗░██║░░██║██║░░██║██║░░██║██████╦╝░╚████╔╝░█████╗░░██║
+██║░░╚██╗██║░░██║██║░░██║██║░░██║██╔══██╗░░╚██╔╝░░██╔══╝░░╚═╝
+╚██████╔╝╚█████╔╝╚█████╔╝██████╔╝██████╦╝░░░██║░░░███████╗██╗
+░╚═════╝░░╚════╝░░╚════╝░╚═════╝░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝".colorize(color: :light_blue, mode: :bold)
     exit
   end
 end
