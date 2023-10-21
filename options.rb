@@ -21,14 +21,13 @@ module Options
   include SaveGame
   def display_options
     puts '
-    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
-    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
-    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
-    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
-    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
-     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
-
-    '.light_blue.underline
+██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
+ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
+ '.light_blue
     loop do
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books.'
@@ -128,55 +127,30 @@ __________________        ____________________________________________
 
   def list_genres
     puts "
-     _____
-    / ____|
-   | |  __  ___ _ __  _ __ ___  ___
-   | | |_ |/ _ \\ '_ \\| '__/ _ \\/ __|
-   | |__| |  __/ | | | | |  __/\\__ \
-\\
-   \\ _____|\\___|_| |_|_|  \\___||___/
-    ".colorize(color: :light_blue, mode: :bold)
+█▀▀ █▀▀ █▄░█ █▀█ █▀▀ █▀
+█▄█ ██▄ █░▀█ █▀▄ ██▄ ▄█".light_magenta
     List.list_genres(@genres)
   end
 
   def list_labels
     puts "
-     _           _          _
-    | |         | |        | |
-    | |     __ _| |__   ___| |___
-    | |    / _` | '_ \\ / _ \\ / __|
-    | |___| (_| | |_) |  __/ \\__ \
-\\
-    |______\\__,_|_.__/ \\___|_|___/
-    ".colorize(color: :light_blue, mode: :bold)
+█░░ ▄▀█ █▄▄ █▀▀ █░░ █▀
+█▄▄ █▀█ █▄█ ██▄ █▄▄ ▄█".cyan
     List.list_labels(@labels)
   end
 
   def list_authors
     puts "
-               _   _
-    /\\        | | | |
-   /  \\  _   _| |_| |__   ___  _ __ ___
-  / /\\ \\| | | | __| '_ \\ / _ \\| '__/ __|
- / ____ \\ |_| | |_| | | | (_) | |  \\__ \
-\\
-/_/    \\_\\__,_|\\__|_| |_|\\___/|_|  |___/
-      ".colorize(color: :light_blue, mode: :bold)
+▄▀█ █░█ ▀█▀ █░█ █▀█ █▀█ █▀
+█▀█ █▄█ ░█░ █▀█ █▄█ █▀▄ ▄█".red
     List.list_authors(@authors)
   end
 
-  def add_album
-    album_publish_date = verify_publish_date
-    album = MusicAlbum.new(album_publish_date)
-    Decorator.decorate(album, @authors, @genres, @labels)
-    @albums << album
-    SaveAlbum.save_album(album)
-    puts '----------------------------------------------'
-    puts 'Album added successfully!'
-    puts '----------------------------------------------'
-  end
-
   def add_book
+    puts "
+    
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█   █▄▄ █▀█ █▀█ █▄▀
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█   █▄█ █▄█ █▄█ █░█".light_green
     print 'Publisher: '
     publisher = gets.chomp
     while true
@@ -201,7 +175,25 @@ __________________        ____________________________________________
     SaveBook.save_book(book)
   end
 
+  def add_album
+    puts "
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█ █▄░█   ▄▀█ █░░ █▄▄ █░█ █▀▄▀█
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█ █░▀█   █▀█ █▄▄ █▄█ █▄█ █░▀░█".light_cyan
+    album_publish_date = verify_publish_date
+    album = MusicAlbum.new(album_publish_date)
+    Decorator.decorate(album, @authors, @genres, @labels)
+    @albums << album
+    SaveAlbum.save_album(album)
+    puts '----------------------------------------------'
+    puts 'Album added successfully!'
+    puts '----------------------------------------------'
+  end
+
   def add_game
+    puts "
+    
+█▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █▀▀   ▄▀█   █▀▀ ▄▀█ █▀▄▀█ █▀▀
+█▄▄ █▀▄ ██▄ █▀█ ░█░ ██▄   █▀█   █▄█ █▀█ █░▀░█ ██▄".light_yellow
     game_publish_date = verify_publish_date
     puts 'Thats the game has multiplayer? (y/n)'
     game_multiplayer = gets.chomp
