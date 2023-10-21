@@ -28,9 +28,9 @@ module List
     else
       collection.each do |label|
         puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
-        puts '----------------------------------------------'
       end
     end
+    puts '----------------------------------------------'
   end
 
   def self.list_authors(collection)
