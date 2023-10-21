@@ -11,6 +11,7 @@ require_relative 'modules/save_label'
 require_relative 'modules/save_book'
 require_relative 'modules/save_game'
 require_relative 'modules/save_author'
+require 'colorize'
 require 'json'
 module Options
   include Decorator
@@ -18,6 +19,15 @@ module Options
   include SaveAlbum
   include SaveGame
   def display_options
+    puts '
+    ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+    ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+    ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+    ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+    ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██╗██╗██╗
+     ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝╚═╝╚═╝
+
+    '.light_blue.underline
     loop do
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books.'
