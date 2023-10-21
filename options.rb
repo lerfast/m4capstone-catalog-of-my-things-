@@ -78,11 +78,7 @@ module Options
     if @books.empty?
       puts 'No books available.'
     else
-      puts 'List of Books:'
-      @books.each do |book|
-        puts "ID: #{book.id}, Publisher: #{book.publisher}, Cover State: #{book.cover_state}, Publish Date: #{book.publish_date}"
-        puts '----------------------------------------------'
-      end
+      List.list_items(@books)
     end
   end
 
@@ -107,25 +103,11 @@ module Options
   end
 
   def list_authors
-    if @authors.empty?
-      puts 'No authors available.'
-    else
-      @authors.each_with_index do |author, index|
-        puts "#{index + 1}. #{author.first_name} #{author.last_name}"
-      end
-    end
+    List.list_authors(@authors)
   end
 
   def list_labels
-    if @labels.empty?
-      puts 'No labels available.'
-    else
-      puts 'List of Labels:'
-      @labels.each do |label|
-        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
-        puts '----------------------------------------------'
-      end
-    end
+    List.list_labels(@labels)
   end
 
   def add_album
