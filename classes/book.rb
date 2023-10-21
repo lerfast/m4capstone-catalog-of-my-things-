@@ -2,7 +2,7 @@ require 'securerandom'
 require_relative 'item'
 
 class Book < Item
-  attr_accessor :id, :publisher, :cover_state, :author, :genre, :label
+  attr_accessor :id, :publisher, :cover_state, :author
 
   def initialize(publisher:, cover_state:, publish_date:, id: SecureRandom.uuid, archived: false, author: nil, genre: nil,
                  label: nil)

@@ -2,7 +2,7 @@ require 'securerandom'
 require_relative 'item'
 
 class MusicAlbum < Item
-  attr_accessor :author, :source, :label, :on_spotify
+  attr_accessor :on_spotify
   attr_reader :publish_date
 
   def initialize(publish_date, id: SecureRandom.uuid, archived: false, author: nil, genre: nil, label: nil, on_spotify: false)
