@@ -1,8 +1,11 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h3><b>Catalog Of My Things</b></h3>
+  <h1><b>Catalog Of My Things</b></h1>
 </div>
+
+
+![Welcome](https://github.com/tomasesquivelgc/My-Things-Catalog/assets/117373513/022aa3e3-98c4-4321-85ee-0407470b9468)
 
 
 <a name="readme-top"></a>
@@ -31,7 +34,11 @@
 
 # 📖 Catalog of my Things <a name="about-project"></a>
 
-**Catalog of my Things** In this project you will learn how to use a module inside your class.
+**Catalog of my Things** Is our Capstone Project for Microverse Module 4: Ruby. In this app you can store your desired Items (music albums, games, or books) with their respective author, genre and label. You can also see a full list of each class!
+
+
+![Properties_list](https://github.com/tomasesquivelgc/My-Things-Catalog/assets/117373513/4467b189-1e89-4aa1-ba96-e0f389cde531)
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
