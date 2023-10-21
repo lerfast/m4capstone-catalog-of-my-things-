@@ -13,6 +13,7 @@ require_relative 'modules/save_game'
 require_relative 'modules/save_author'
 require 'colorize'
 require 'json'
+
 module Options
   include Decorator
   include List
@@ -65,6 +66,7 @@ module Options
     9 => :add_game,
     0 => :quit
   }.freeze
+
   def process_input(option)
     action = OPTION_ACTIONS[option]
     if action
@@ -78,6 +80,15 @@ module Options
     if @books.empty?
       puts 'No books available.'
     else
+      puts "
+        __...--~~~~~-._   _.-~~~~~--...__
+      //               `V'               \\\\
+     //                 |                 \\\\
+    //__...--~~~~~~-._  |  _.-~~~~~~--...__\\\\
+   //__.....----~~~~._\\ | /_.~~~~----.....__\\\\
+  ====================\\\\|//====================
+                      `---`
+      ".colorize(:light_blue )
       List.list_items(@books)
     end
   end
@@ -86,6 +97,14 @@ module Options
     if @albums.empty?
       puts 'No albums available.'
     else
+      puts "
+___|\\_______|________|_______________________O__________@____________
+___|/_______|________|_|___|__________|__@__|_____@__|_|____O._______||
+__/|____4___|__O_____|_|___|__O.______|_|@__|____|___|_|___|O.______o||
+_(_/^\\__4__@|_|_____@__|___|_|________|_|@__|____|___|_|___|________o||
+__\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
+   d          |           @  |          |
+      ".light_blue
       List.list_items(@albums)
     end
   end
@@ -94,6 +113,15 @@ module Options
     if @games.empty?
       puts 'No games available.'
     else
+      puts "
+__________________|      |____________________________________________
+     ,--.    ,--.          ,--.   ,--.
+    |oo  | _  \\  `.       | oo | |  oo|
+o  o|~~  |(_) /   ;       | ~~ | |  ~~|o  o  o  o  o  o  o  o  o  o  o
+    |/\\/\\|   '._,'        |/\\/\\| |/\\/\\|
+__________________        ____________________________________________
+                  |      |
+                  ".colorize(:light_blue)
       List.list_items(@games)
     end
   end
