@@ -168,11 +168,16 @@ __________________        ____________________________________________
     publish_date = verify_publish_date('Enter the publish date of the book (YYYY-MM-DD):')
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     Decorator.decorate(book, @authors, @genres, @labels)
-    puts '----------------------------------------------'
-    puts 'Book added successfully.'
-    puts '----------------------------------------------'
     @books << book
     SaveBook.save_book(book)
+    puts "
+    
+╔══╗──────╔╗───────╔╗─╔╗────╔╗
+║╔╗║──────║║───────║║─║║────║║
+║╚╝╚╦══╦══╣║╔╗╔══╦═╝╠═╝╠══╦═╝║
+║╔═╗║╔╗║╔╗║╚╝╝║╔╗║╔╗║╔╗║║═╣╔╗║
+║╚═╝║╚╝║╚╝║╔╗╗║╔╗║╚╝║╚╝║║═╣╚╝║
+╚═══╩══╩══╩╝╚╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_green, mode: :bold)
   end
 
   def add_album
@@ -184,9 +189,13 @@ __________________        ____________________________________________
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
     SaveAlbum.save_album(album)
-    puts '----------------------------------------------'
-    puts 'Album added successfully!'
-    puts '----------------------------------------------'
+    puts "
+╔═══╦╗╔╗─────────────╔╗─╔╗────╔╗
+║╔═╗║║║║─────────────║║─║║────║║
+║║─║║║║╚═╦╗╔╦╗╔╗╔══╦═╝╠═╝╠══╦═╝║
+║╚═╝║║║╔╗║║║║╚╝║║╔╗║╔╗║╔╗║║═╣╔╗║
+║╔═╗║╚╣╚╝║╚╝║║║║║╔╗║╚╝║╚╝║║═╣╚╝║
+╚╝─╚╩═╩══╩══╩╩╩╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_cyan, mode: :bold)
   end
 
   def add_game
@@ -202,9 +211,13 @@ __________________        ____________________________________________
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
     SaveGame.save_game_to_json(game)
-    puts '----------------------------------------------'
-    puts 'Game added successfully!!!'
-    puts '----------------------------------------------'
+    puts "
+╔═══╗──────────────╔╗─╔╗────╔╗
+║╔═╗║──────────────║║─║║────║║
+║║─╚╬══╦╗╔╦══╗╔══╦═╝╠═╝╠══╦═╝║
+║║╔═╣╔╗║╚╝║║═╣║╔╗║╔╗║╔╗║║═╣╔╗║
+║╚╩═║╔╗║║║║║═╣║╔╗║╚╝║╚╝║║═╣╚╝║
+╚═══╩╝╚╩╩╩╩══╝╚╝╚╩══╩══╩══╩══╝".colorize(color: :light_yellow, mode: :bold)
   end
 
   def valid_date?(date_str)
