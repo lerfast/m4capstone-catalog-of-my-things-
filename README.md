@@ -175,7 +175,9 @@ rspec
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-More data
+ -[] Movie Data
+ -[] Erase Items
+ -[] Item Sourve
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
