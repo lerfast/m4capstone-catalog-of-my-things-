@@ -30,16 +30,16 @@ module Options
  '.light_blue
     loop do
       puts 'Please choose an option by entering a number:'
-      puts '1 - List all books.'
-      puts '2 - List all music albums.'
-      puts '3 - List of games.'
-      puts '4 - List all genres.'
-      puts '5 - List all labels.'
-      puts '6 - List all authors.'
-      puts '7 - Add a book.'
-      puts '8 - Add a music album.'
-      puts '9 - Add a game.'
-      puts '0 - Quit.'
+      puts '1 - List all books.'.light_green
+      puts '2 - List all music albums.'.light_cyan
+      puts '3 - List of games.'.light_yellow
+      puts '4 - List all genres.'.light_magenta
+      puts '5 - List all labels.'.cyan
+      puts '6 - List all authors.'.red
+      puts '7 - Add a book.'.light_green
+      puts '8 - Add a music album.'.light_cyan
+      puts '9 - Add a game.'.light_yellow
+      puts '0 - Quit.'.light_blue
       option = gets.chomp
       if number?(option)
         process_input(option.to_i)
@@ -87,7 +87,7 @@ module Options
    //__.....----~~~~._\\ | /_.~~~~----.....__\\\\
   ====================\\\\|//====================
                       `---`
-      ".colorize(color: :light_blue, mode: :bold)
+      ".colorize(color: :light_green, mode: :bold)
       List.list_items(@books)
     end
   end
@@ -103,7 +103,7 @@ __/|____4___|__O_____|_|___|__O.______|_|@__|____|___|_|___|O.______o||
 _(_/^\\__4__@|_|_____@__|___|_|________|_|@__|____|___|_|___|________o||
 __\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
    d          |           @  |          |
-      ".colorize(color: :light_blue, mode: :bold)
+      ".colorize(color: :light_cyan, mode: :bold)
       List.list_items(@albums)
     end
   end
@@ -120,7 +120,7 @@ o  o|~~  |(_) /   ;       | ~~ | |  ~~|o  o  o  o  o  o  o  o  o  o  o
     |/\\/\\|   '._,'        |/\\/\\| |/\\/\\|
 __________________        ____________________________________________
                   |      |
-                  ".colorize(color: :light_blue, mode: :bold)
+                  ".colorize(color: :light_yellow, mode: :bold)
       List.list_items(@games)
     end
   end
