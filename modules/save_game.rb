@@ -7,7 +7,8 @@ module SaveGame
       genre: game.genre.to_h,
       label: game.label.to_h,
       multiplayer: game.multiplayer,
-      last_played_at: game.last_played_at.to_s
+      last_played_at: game.last_played_at.to_s,
+      id: game.id
 
     }
 
@@ -36,7 +37,8 @@ module SaveGame
                         archived: data['archived'],
                         author: author,
                         genre: genre,
-                        label: label)
+                        label: label,
+                        id: data['id'])
         games << game
       end
     end
