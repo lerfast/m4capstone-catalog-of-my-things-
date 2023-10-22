@@ -11,6 +11,8 @@ require_relative 'modules/save_label'
 require_relative 'modules/save_book'
 require_relative 'modules/save_game'
 require_relative 'modules/save_author'
+require_relative 'modules/load_items'
+require_relative 'modules/load_categories'
 require 'colorize'
 require 'json'
 
@@ -19,6 +21,8 @@ module Options
   include List
   include SaveAlbum
   include SaveGame
+  include LoadItems
+  include LoadCategories
   def display_options
     puts '
 ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
@@ -236,29 +240,29 @@ __________________        ____________________________________________
     publish_date
   end
 
-  def load_games_from_json
-    SaveGame.load_games_from_json
-  end
-
-  def load_albums_from_json
-    SaveAlbum.load_albums
-  end
-
   def load_genres_from_json
-    SaveGenre.load_genres(@games, @albums, @books)
+    LoadCategories.load_genres(@games, @albums, @books)
   end
 
   def load_labels_from_json
-    SaveLabel.load_labels(@games, @albums, @books)
-  end
-
-  def load_books_from_json
-    SaveBook.load_books
+    LoadCategories.load_labels(@games, @albums, @books)
   end
 
   def load_authors_from_json
-    SaveAuthor.load_authors(@games, @albums, @books)
+    LoadCategories.load_authors(@games, @albums, @books)
   end
+
+  def load_books_from_json
+    LoadItems.load_books
+  end
+
+  def load_albums_from_json
+    LoadItems.load_albums
+  end
+
+  def load_games_from_json
+      LoadItems.load_games
+    end
 
   def show_error
     puts 'Error! Please select a valid option.'

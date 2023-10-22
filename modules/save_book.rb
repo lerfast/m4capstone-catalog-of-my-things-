@@ -15,33 +15,4 @@ module SaveBook
       file.puts(data.to_json)
     end
   end
-
-  def self.load_books
-    books = []
-    File.open('data/books.json', 'r') do |file|
-      file.each_line do |line|
-        data = JSON.parse(line)
-
-        author_data = data['author']
-        author = Author.new(author_data['first_name'], author_data['last_name'])
-
-        genre_data = data['genre']
-        genre = Genre.new(genre_data['name'])
-
-        label_data = data['label']
-        label = Label.new(title: label_data['name'], color: label_data['color'])
-
-        book = Book.new(publisher: data['publisher'],
-                        cover_state: data['cover_state'],
-                        publish_date: data['publish_date'],
-                        id: data['id'],
-                        archived: data['archived'],
-                        author: author,
-                        genre: genre,
-                        label: label)
-        books << book
-      end
-    end
-    books
-  end
 end
