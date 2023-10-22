@@ -7,8 +7,7 @@ module SaveAlbum
       author: album.author.to_h,
       genre: album.genre.to_h,
       label: album.label.to_h,
-      on_spotify: album.on_spotify,
-      class: album.class.to_s
+      on_spotify: album.on_spotify
     }
 
     File.open('data/albums.json', 'a') do |file|
