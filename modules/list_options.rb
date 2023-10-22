@@ -2,7 +2,7 @@ module ListOptions
   def self.list_options(collection)
     puts "
 █▀▄ █▀▀ █░░ █▀▀ ▀█▀ █▀▀   ▄▀█ █▄░█   █ ▀█▀ █▀▀ █▀▄▀█ ▀█
-█▄▀ ██▄ █▄▄ ██▄ ░█░ ██▄   █▀█ █░▀█   █ ░█░ ██▄ █░▀░█ ░▄".light_blue
+█▄▀ ██▄ █▄▄ ██▄ ░█░ ██▄   █▀█ █░▀█   █ ░█░ ██▄ █░▀░█ ░▄".blue
     loop do
       puts 'Select an item by index to delete or press 0 to go back.'
       number = gets.chomp.to_i
@@ -18,7 +18,7 @@ module ListOptions
 ─║╠╗╔╬══╦╗╔╗╔═╝╠══╣║╔═╩╗╔╬══╦═╝║
 ─║║║║║║═╣╚╝║║╔╗║║═╣║║║═╣║║║═╣╔╗║
 ╔╣╠╣╚╣║═╣║║║║╚╝║║═╣╚╣║═╣╚╣║═╣╚╝║
-╚══╩═╩══╩╩╩╝╚══╩══╩═╩══╩═╩══╩══╝".light_blue
+╚══╩═╩══╩╩╩╝╚══╩══╩═╩══╩═╩══╩══╝".blue
       end
     end
   end
