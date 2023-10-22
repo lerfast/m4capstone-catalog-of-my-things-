@@ -15,7 +15,7 @@ module List
       puts 'This list is empty'
     else
       collection.each_with_index do |genre, index|
-        puts "#{index + 1}. #{genre.name}"
+        puts "#{index + 1}. #{genre.name} (#{genre.items.count})"
       end
     end
     puts '----------------------------------------------'

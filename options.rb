@@ -245,7 +245,7 @@ __________________        ____________________________________________
   end
 
   def load_genres_from_json
-    SaveGenre.load_genres
+    SaveGenre.load_genres(@games, @albums, @books)
   end
 
   def load_labels_from_json
