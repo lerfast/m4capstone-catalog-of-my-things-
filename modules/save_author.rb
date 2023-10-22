@@ -33,8 +33,7 @@ module SaveAuthor
     items.map do |item|
       {
         id: item.id,
-        class: item.class.to_s,
-        title: item.label.title
+        class: item.class.to_s
     }
     end
   end
