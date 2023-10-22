@@ -12,8 +12,8 @@ module Decorator
     if authors.any? { |author| author.first_name == author_first_name && author.last_name == author_last_name }
       item.author = authors.find { |author| author.first_name == author_first_name && author.last_name == author_last_name }
     else
-    item.author = Author.new(author_first_name, author_last_name)
-    authors << item.author
+      item.author = Author.new(author_first_name, author_last_name)
+      authors << item.author
     end
 
     puts 'name of the genre is:'
@@ -22,10 +22,10 @@ module Decorator
     if genres.any? { |genre| genre.name == genre_name }
       item.genre = genres.find { |genre| genre.name == genre_name }
     else
-    item.genre = Genre.new(genre_name)
-    genres << item.genre
+      item.genre = Genre.new(genre_name)
+      genres << item.genre
     end
-    
+
     puts 'title of the label is:'
     label_title = gets.chomp
     puts 'color of the label is:'
@@ -34,8 +34,8 @@ module Decorator
     if labels.any? { |label| label.title == label_title && label.color == label_color }
       item.label = labels.find { |label| label.title == label_title && label.color == label_color }
     else
-    item.label = Label.new(title: label_title, color: label_color)
-    labels << item.label
+      item.label = Label.new(title: label_title, color: label_color)
+      labels << item.label
     end
   end
 end

@@ -26,7 +26,7 @@ module LoadCategories
         game_items = games.select { |game| data['items'].include?('id' => game.id, 'class' => 'Game') }
         album_items = albums.select { |album| data['items'].include?('id' => album.id, 'class' => 'MusicAlbum') }
         book_items = books.select { |book| data['items'].include?('id' => book.id, 'class' => 'Book') }
-  
+
         # Assign the corresponding arrays to the 'items' property of the Genre object
         genre.items = game_items + album_items + book_items
         genres << genre

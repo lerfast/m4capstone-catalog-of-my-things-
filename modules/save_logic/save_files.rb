@@ -2,22 +2,21 @@ require_relative 'save_items'
 require_relative 'save_categories'
 
 module SaveFiles
-include SaveItems
-include SaveCategories
-def self.erase_previous_data
-  files_to_clear = ['data/albums.json', 'data/authors.json', 'data/labels.json', 'data/genres.json', 'data/books.json', 'data/games.json']
+  include SaveItems
+  include SaveCategories
+  def self.erase_previous_data
+    files_to_clear = ['data/albums.json', 'data/authors.json', 'data/labels.json', 'data/genres.json', 'data/books.json', 'data/games.json']
 
-  begin
-    files_to_clear.each do |file_path|
-      File.open(file_path, 'w') do |file|
-        file.truncate(0)
+    begin
+      files_to_clear.each do |file_path|
+        File.open(file_path, 'w') do |file|
+          file.truncate(0)
+        end
       end
+    rescue StandardError => e
+      puts "An error occurred: #{e.message}"
     end
-    puts "Content in JSON files erased successfully."
-  rescue StandardError => e
-    puts "An error occurred: #{e.message}"
   end
-end
 
   def self.save_albums(albums)
     albums.each do |album|

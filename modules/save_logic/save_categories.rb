@@ -57,7 +57,7 @@ module SaveCategories
       {
         id: item.id,
         class: item.class.to_s
-    }
+      }
     end
   end
 end

@@ -5,9 +5,9 @@ require_relative 'classes/label'
 require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
-require_relative 'modules/load_items'
-require_relative 'modules/load_categories'
-require_relative 'modules/save_files'
+require_relative 'modules/load_logic/load_items'
+require_relative 'modules/load_logic/load_categories'
+require_relative 'modules/save_logic/save_files'
 require 'colorize'
 require 'json'
 
@@ -252,14 +252,22 @@ __________________        ____________________________________________
   end
 
   def load_games_from_json
-      LoadItems.load_games
-    end
+    LoadItems.load_games
+  end
 
   def show_error
     puts 'Error! Please select a valid option.'
   end
 
   def quit
+    SaveFiles.erase_previous_data
+    SaveFiles.save_books(@books)
+    SaveFiles.save_albums(@albums)
+    SaveFiles.save_games(@games)
+    SaveFiles.save_authors(@authors)
+    SaveFiles.save_genres(@genres)
+    SaveFiles.save_labels(@labels)
+    puts 'Data saved.'
     puts "
 
 ░██████╗░░█████╗░░█████╗░██████╗░██████╗░██╗░░░██╗███████╗██╗
@@ -268,13 +276,6 @@ __________________        ____________________________________________
 ██║░░╚██╗██║░░██║██║░░██║██║░░██║██╔══██╗░░╚██╔╝░░██╔══╝░░╚═╝
 ╚██████╔╝╚█████╔╝╚█████╔╝██████╔╝██████╦╝░░░██║░░░███████╗██╗
 ░╚═════╝░░╚════╝░░╚════╝░╚═════╝░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝".colorize(color: :light_blue, mode: :bold)
-    SaveFiles.erase_previous_data
-    SaveFiles.save_books(@books)
-    SaveFiles.save_albums(@albums)
-    SaveFiles.save_games(@games)
-    SaveFiles.save_authors(@authors)
-    SaveFiles.save_genres(@genres)
-    SaveFiles.save_labels(@labels)
     exit
   end
 end
