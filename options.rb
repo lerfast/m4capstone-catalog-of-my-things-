@@ -133,6 +133,7 @@ __________________        ____________________________________________
 █▀▀ █▀▀ █▄░█ █▀█ █▀▀ █▀
 █▄█ ██▄ █░▀█ █▀▄ ██▄ ▄█".light_magenta
     List.list_genres(@genres)
+    ListOptions.list_options(@genres)
   end
 
   def list_labels
@@ -140,6 +141,7 @@ __________________        ____________________________________________
 █░░ ▄▀█ █▄▄ █▀▀ █░░ █▀
 █▄▄ █▀█ █▄█ ██▄ █▄▄ ▄█".cyan
     List.list_labels(@labels)
+    ListOptions.list_options(@labels)
   end
 
   def list_authors
@@ -147,6 +149,7 @@ __________________        ____________________________________________
 ▄▀█ █░█ ▀█▀ █░█ █▀█ █▀█ █▀
 █▀█ █▄█ ░█░ █▀█ █▄█ █▀▄ ▄█".red
     List.list_authors(@authors)
+    ListOptions.list_options(@authors)
   end
 
   def add_book
