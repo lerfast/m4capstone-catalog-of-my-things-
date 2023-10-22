@@ -5,24 +5,18 @@ require_relative 'classes/label'
 require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
-require_relative 'modules/save_album'
-require_relative 'modules/save_genre'
-require_relative 'modules/save_label'
-require_relative 'modules/save_book'
-require_relative 'modules/save_game'
-require_relative 'modules/save_author'
 require_relative 'modules/load_items'
 require_relative 'modules/load_categories'
+require_relative 'modules/save_files'
 require 'colorize'
 require 'json'
 
 module Options
   include Decorator
   include List
-  include SaveAlbum
-  include SaveGame
   include LoadItems
   include LoadCategories
+  include SaveFiles
   def display_options
     puts '
 ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
@@ -173,7 +167,6 @@ __________________        ____________________________________________
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     Decorator.decorate(book, @authors, @genres, @labels)
     @books << book
-    SaveBook.save_book(book)
     puts "
 
 ╔══╗──────╔╗───────╔╗─╔╗────╔╗
@@ -192,7 +185,6 @@ __________________        ____________________________________________
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
-    SaveAlbum.save_album(album)
     puts "
 ╔═══╦╗╔╗─────────────╔╗─╔╗────╔╗
 ║╔═╗║║║║─────────────║║─║║────║║
@@ -214,7 +206,6 @@ __________________        ____________________________________________
     game = Game.new(game_publish_date, game_multiplayer, game_last_played_date)
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
-    SaveGame.save_game_to_json(game)
     puts "
 ╔═══╗──────────────╔╗─╔╗────╔╗
 ║╔═╗║──────────────║║─║║────║║
@@ -277,6 +268,13 @@ __________________        ____________________________________________
 ██║░░╚██╗██║░░██║██║░░██║██║░░██║██╔══██╗░░╚██╔╝░░██╔══╝░░╚═╝
 ╚██████╔╝╚█████╔╝╚█████╔╝██████╔╝██████╦╝░░░██║░░░███████╗██╗
 ░╚═════╝░░╚════╝░░╚════╝░╚═════╝░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝".colorize(color: :light_blue, mode: :bold)
+    SaveFiles.erase_previous_data
+    SaveFiles.save_books(@books)
+    SaveFiles.save_albums(@albums)
+    SaveFiles.save_games(@games)
+    SaveFiles.save_authors(@authors)
+    SaveFiles.save_genres(@genres)
+    SaveFiles.save_labels(@labels)
     exit
   end
 end
