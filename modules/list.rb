@@ -39,7 +39,7 @@ module List
       puts 'This list is empty'
     else
       collection.each_with_index do |author, index|
-        puts "#{index + 1}. #{author.first_name} #{author.last_name}"
+        puts "#{index + 1}. #{author.first_name} #{author.last_name} (#{author.items.count})"
       end
     end
     puts '----------------------------------------------'

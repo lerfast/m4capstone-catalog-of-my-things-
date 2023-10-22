@@ -257,7 +257,7 @@ __________________        ____________________________________________
   end
 
   def load_authors_from_json
-    SaveAuthor.load_authors
+    SaveAuthor.load_authors(@games, @albums, @books)
   end
 
   def show_error
