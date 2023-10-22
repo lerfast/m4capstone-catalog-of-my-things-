@@ -26,8 +26,8 @@ module List
     if collection.empty?
       puts 'This list is empty'
     else
-      collection.each do |label|
-        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
+      collection.each_with_index do |label, index|
+        puts "#{index + 1}. Title: #{label.title}, Color: #{label.color} (#{label.items.count})"
       end
     end
     puts '----------------------------------------------'

@@ -249,7 +249,7 @@ __________________        ____________________________________________
   end
 
   def load_labels_from_json
-    SaveLabel.load_labels
+    SaveLabel.load_labels(@games, @albums, @books)
   end
 
   def load_books_from_json
