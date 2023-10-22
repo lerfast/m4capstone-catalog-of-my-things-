@@ -8,6 +8,7 @@ require_relative 'modules/list'
 require_relative 'modules/load_logic/load_items'
 require_relative 'modules/load_logic/load_categories'
 require_relative 'modules/save_logic/save_files'
+require_relative 'modules/list_options'
 require 'colorize'
 require 'json'
 
@@ -17,6 +18,7 @@ module Options
   include LoadItems
   include LoadCategories
   include SaveFiles
+  include ListOptions
   def display_options
     puts '
 ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
@@ -87,6 +89,7 @@ module Options
                       `---`
       ".colorize(color: :light_green, mode: :bold)
       List.list_items(@books)
+      ListOptions.list_options(@books)
     end
   end
 
@@ -103,6 +106,7 @@ __\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
    d          |           @  |          |
       ".colorize(color: :light_cyan, mode: :bold)
       List.list_items(@albums)
+      ListOptions.list_options(@albums)
     end
   end
 
@@ -120,6 +124,7 @@ __________________        ____________________________________________
                   |      |
                   ".colorize(color: :light_yellow, mode: :bold)
       List.list_items(@games)
+      ListOptions.list_options(@games)
     end
   end
 

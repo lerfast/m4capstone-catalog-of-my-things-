@@ -1,0 +1,27 @@
+module ListOptions
+  def self.list_options(collection)
+    puts "
+█▀▄ █▀▀ █░░ █▀▀ ▀█▀ █▀▀   ▄▀█ █▄░█   █ ▀█▀ █▀▀ █▀▄▀█ ▀█
+█▄▀ ██▄ █▄▄ ██▄ ░█░ ██▄   █▀█ █░▀█   █ ░█░ ██▄ █░▀░█ ░▄".light_blue
+    loop do
+      puts "Select an item by index to delete or press 0 to go back."
+      number = gets.chomp.to_i
+      if number == 0
+        return
+      elsif number > collection.size
+        puts "Invalid index."
+      else
+        collection.delete_at(number - 1)
+        puts "
+╔══╦╗─────────╔╗──╔╗───╔╗─────╔╗
+╚╣╠╝╚╗────────║║──║║──╔╝╚╗────║║
+─║╠╗╔╬══╦╗╔╗╔═╝╠══╣║╔═╩╗╔╬══╦═╝║
+─║║║║║║═╣╚╝║║╔╗║║═╣║║║═╣║║║═╣╔╗║
+╔╣╠╣╚╣║═╣║║║║╚╝║║═╣╚╣║═╣╚╣║═╣╚╝║
+╚══╩═╩══╩╩╩╝╚══╩══╩═╩══╩═╩══╩══╝".light_blue
+        return
+      end
+    end
+  end
+
+end
