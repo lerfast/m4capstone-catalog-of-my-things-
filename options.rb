@@ -5,20 +5,20 @@ require_relative 'classes/label'
 require_relative 'classes/item'
 require_relative 'modules/decorator'
 require_relative 'modules/list'
-require_relative 'modules/save_album'
-require_relative 'modules/save_genre'
-require_relative 'modules/save_label'
-require_relative 'modules/save_book'
-require_relative 'modules/save_game'
-require_relative 'modules/save_author'
+require_relative 'modules/load_logic/load_items'
+require_relative 'modules/load_logic/load_categories'
+require_relative 'modules/save_logic/save_files'
+require_relative 'modules/list_options'
 require 'colorize'
 require 'json'
 
 module Options
   include Decorator
   include List
-  include SaveAlbum
-  include SaveGame
+  include LoadItems
+  include LoadCategories
+  include SaveFiles
+  include ListOptions
   def display_options
     puts '
 ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
@@ -89,6 +89,7 @@ module Options
                       `---`
       ".colorize(color: :light_green, mode: :bold)
       List.list_items(@books)
+      ListOptions.list_options(@books)
     end
   end
 
@@ -105,6 +106,7 @@ __\\|/'_____@__|________|__@|_|________|_|________|___|_____|_________||
    d          |           @  |          |
       ".colorize(color: :light_cyan, mode: :bold)
       List.list_items(@albums)
+      ListOptions.list_options(@albums)
     end
   end
 
@@ -122,6 +124,7 @@ __________________        ____________________________________________
                   |      |
                   ".colorize(color: :light_yellow, mode: :bold)
       List.list_items(@games)
+      ListOptions.list_options(@games)
     end
   end
 
@@ -130,6 +133,7 @@ __________________        ____________________________________________
 █▀▀ █▀▀ █▄░█ █▀█ █▀▀ █▀
 █▄█ ██▄ █░▀█ █▀▄ ██▄ ▄█".light_magenta
     List.list_genres(@genres)
+    ListOptions.list_options(@genres)
   end
 
   def list_labels
@@ -137,6 +141,7 @@ __________________        ____________________________________________
 █░░ ▄▀█ █▄▄ █▀▀ █░░ █▀
 █▄▄ █▀█ █▄█ ██▄ █▄▄ ▄█".cyan
     List.list_labels(@labels)
+    ListOptions.list_options(@labels)
   end
 
   def list_authors
@@ -144,6 +149,7 @@ __________________        ____________________________________________
 ▄▀█ █░█ ▀█▀ █░█ █▀█ █▀█ █▀
 █▀█ █▄█ ░█░ █▀█ █▄█ █▀▄ ▄█".red
     List.list_authors(@authors)
+    ListOptions.list_options(@authors)
   end
 
   def add_book
@@ -169,7 +175,6 @@ __________________        ____________________________________________
     book = Book.new(publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     Decorator.decorate(book, @authors, @genres, @labels)
     @books << book
-    SaveBook.save_book(book)
     puts "
 
 ╔══╗──────╔╗───────╔╗─╔╗────╔╗
@@ -188,7 +193,6 @@ __________________        ____________________________________________
     album = MusicAlbum.new(album_publish_date)
     Decorator.decorate(album, @authors, @genres, @labels)
     @albums << album
-    SaveAlbum.save_album(album)
     puts "
 ╔═══╦╗╔╗─────────────╔╗─╔╗────╔╗
 ║╔═╗║║║║─────────────║║─║║────║║
@@ -210,7 +214,6 @@ __________________        ____________________________________________
     game = Game.new(game_publish_date, game_multiplayer, game_last_played_date)
     Decorator.decorate(game, @authors, @genres, @labels)
     @games << game
-    SaveGame.save_game_to_json(game)
     puts "
 ╔═══╗──────────────╔╗─╔╗────╔╗
 ║╔═╗║──────────────║║─║║────║║
@@ -236,28 +239,28 @@ __________________        ____________________________________________
     publish_date
   end
 
-  def load_games_from_json
-    SaveGame.load_games_from_json
-  end
-
-  def load_albums_from_json
-    SaveAlbum.load_albums
-  end
-
   def load_genres_from_json
-    SaveGenre.load_genres
+    LoadCategories.load_genres(@games, @albums, @books)
   end
 
   def load_labels_from_json
-    SaveLabel.load_labels
-  end
-
-  def load_books_from_json
-    SaveBook.load_books
+    LoadCategories.load_labels(@games, @albums, @books)
   end
 
   def load_authors_from_json
-    SaveAuthor.load_authors
+    LoadCategories.load_authors(@games, @albums, @books)
+  end
+
+  def load_books_from_json
+    LoadItems.load_books
+  end
+
+  def load_albums_from_json
+    LoadItems.load_albums
+  end
+
+  def load_games_from_json
+    LoadItems.load_games
   end
 
   def show_error
@@ -265,6 +268,14 @@ __________________        ____________________________________________
   end
 
   def quit
+    SaveFiles.erase_previous_data
+    SaveFiles.save_books(@books)
+    SaveFiles.save_albums(@albums)
+    SaveFiles.save_games(@games)
+    SaveFiles.save_authors(@authors)
+    SaveFiles.save_genres(@genres)
+    SaveFiles.save_labels(@labels)
+    puts 'Data saved.'
     puts "
 
 ░██████╗░░█████╗░░█████╗░██████╗░██████╗░██╗░░░██╗███████╗██╗

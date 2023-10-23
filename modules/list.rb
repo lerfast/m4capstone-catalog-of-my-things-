@@ -15,7 +15,7 @@ module List
       puts 'This list is empty'
     else
       collection.each_with_index do |genre, index|
-        puts "#{index + 1}. #{genre.name}"
+        puts "#{index + 1}. #{genre.name} (#{genre.items.count})"
       end
     end
     puts '----------------------------------------------'
@@ -26,8 +26,8 @@ module List
     if collection.empty?
       puts 'This list is empty'
     else
-      collection.each do |label|
-        puts "ID: #{label.id}, Title: #{label.title}, Color: #{label.color}"
+      collection.each_with_index do |label, index|
+        puts "#{index + 1}. Title: #{label.title}, Color: #{label.color} (#{label.items.count})"
       end
     end
     puts '----------------------------------------------'
@@ -39,7 +39,7 @@ module List
       puts 'This list is empty'
     else
       collection.each_with_index do |author, index|
-        puts "#{index + 1}. #{author.first_name} #{author.last_name}"
+        puts "#{index + 1}. #{author.first_name} #{author.last_name} (#{author.items.count})"
       end
     end
     puts '----------------------------------------------'

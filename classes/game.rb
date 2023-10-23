@@ -1,17 +1,10 @@
 require_relative 'item'
 
 class Game < Item
-  attr_accessor :multiplayer, :last_played_at
+  attr_accessor :multiplayer, :last_played_at, :id
 
-  def initialize(publish_date, multiplayer, last_played_at, archived: false, author: nil, genre: nil, label: nil)
-    loop do
-      break if valid_date_format?(last_played_at)
-
-      puts 'Invalid last_played_date format. Please use YYYY-MM-DD.'
-      last_played_at = gets.chomp
-    end
-
-    super(publish_date, archived: archived, author: author, genre: genre, label: label)
+  def initialize(publish_date, multiplayer, last_played_at, archived: false, author: nil, genre: nil, label: nil, id: SecureRandom.uuid)
+    super(publish_date, archived: archived, author: author, genre: genre, label: label, id: id)
     @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at)
   end
