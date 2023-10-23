@@ -32,7 +32,7 @@
 
 # 📖 Catalog of my Things <a name="about-project"></a>
 
-**Catalog of my Things** Is our Capstone Project for Microverse Module 4: Ruby. In this app you can store your desired Items (music albums, games, or books) with their respective author, genre and label. You can also see a full list of each class!
+**Catalog of my Things** Is our Capstone Project for Microverse Module 4: Ruby. In this app you can store your desired Items (music albums, games, or books) with their respective author, genre and label. You can also see a full list of each class and delete items!
 
 
 ![Properties_list](https://github.com/tomasesquivelgc/My-Things-Catalog/assets/117373513/4467b189-1e89-4aa1-ba96-e0f389cde531)
